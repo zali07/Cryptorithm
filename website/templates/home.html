@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
+<h1 align="center">Notes</h1>
+<ul class="list-group list-group-flush" id="notes">
+  {% for note in user.notes %}
+  <li class="list-group-item">
+    {{ note.data }}
+    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+<form method="POST">
+  <textarea name="note" id="note" class="form-control"></textarea>
+  <br />
+  <label for="encryptype">Choose encryption type:</label>
+  <select name="enty" id="enty">
+    <optgroup label="Encrypt">
+      <option value="volvo">CBC</option>
+      <option value="saab">CAESAR</option>
+    </optgroup>
+    <optgroup label="Decrypt">
+      <option value="mercedes">AES</option>
+      <option value="audi">HILL</option>
+    </optgroup>
+  </select>
+  <br />
+  <div align="center">
+    <button
+      type="submit"
+      name="encrypt"
+      value="Encrypt"
+      class="btn btn-primary"
+    >
+      Encrypt
+    </button>
+    <button
+      type="submit"
+      name="decrypt"
+      value="Decrypt"
+      class="btn btn-primary"
+    >
+      Decrypt
+    </button>
+  </div>
+</form>
+{% endblock %}
