@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
-<h1 align="center">Notes</h1>
+<h1 align="center">History</h1>
 <ul class="list-group list-group-flush" id="notes">
   {% for note in user.notes %}
   <li class="list-group-item">
@@ -11,37 +11,24 @@
   {% endfor %}
 </ul>
 <form method="POST">
-  <textarea name="note" id="note" class="form-control"></textarea>
+  <textarea name="ptext" id="ptext" class="form-control"></textarea>
   <br />
-  <label for="encryptype">Choose encryption type:</label>
-  <select name="enty" id="enty">
+  <label for="encryptype">Choose an algorithm:</label>
+  <select name="enty" id="enty" onchange="addInputs()">
+    <option value="" disabled selected>None</option>
     <optgroup label="Encrypt">
-      <option value="volvo">CBC</option>
-      <option value="saab">CAESAR</option>
+      <option value="CAESAR_EN">Caesar</option>
+      <option value="AFFINE_EN">Affine</option>
     </optgroup>
     <optgroup label="Decrypt">
-      <option value="mercedes">AES</option>
-      <option value="audi">HILL</option>
+      <option value="CAESAR_DE">Caesar</option>
+      <option value="AFFINE_DE">Affine</option>
     </optgroup>
   </select>
+  <div id="inputContainer"></div>
   <br />
   <div align="center">
-    <button
-      type="submit"
-      name="encrypt"
-      value="Encrypt"
-      class="btn btn-primary"
-    >
-      Encrypt
-    </button>
-    <button
-      type="submit"
-      name="decrypt"
-      value="Decrypt"
-      class="btn btn-primary"
-    >
-      Decrypt
-    </button>
+    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
   </div>
 </form>
 {% endblock %}

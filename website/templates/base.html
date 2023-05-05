@@ -14,8 +14,51 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       crossorigin="anonymous"
     />
-
     <title>{% block title %}Home{% endblock %}</title>
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #container {
+        overflow: hidden;
+        position: relative;
+      }
+
+      #msg {
+        -webkit-animation: cssAnimation 3s forwards;
+        animation: cssAnimation 3s forwards;
+      }
+
+      @keyframes cssAnimation {
+        0% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @-webkit-keyframes cssAnimation {
+        0% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -43,19 +86,28 @@
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %} {% for category, message in messages %} {% if category ==
     'error' %}
-    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+    <div
+      id="msg"
+      class="alert alert-danger alter-dismissable fade show"
+      role="alert"
+    >
       {{ message }}
       <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     {% else %}
-    <div class="alert alert-success alter-dismissable fade show" role="alert">
+    <div
+      id="msg"
+      class="alert alert-success alter-dismissable fade show"
+      role="alert"
+    >
       {{ message }}
       <button type="button" class="close" data-dismiss="alert">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+
     {% endif %} {% endfor %} {% endif %} {% endwith %}
 
     <div class="container">{% block content %} {% endblock %}</div>
@@ -84,6 +136,49 @@
         }).then((_res) => {
           window.location.href = "/";
         });
+      }
+      function addInputs() {
+        var select = document.getElementById("enty");
+        var option = select.options[select.selectedIndex].value;
+        var container = document.getElementById("inputContainer");
+        container.innerHTML = "";
+
+        switch (option) {
+          case "CAESAR_EN":
+            var CAESAR_EN_SHIFT = document.createElement("input");
+            CAESAR_EN_SHIFT.type = "number";
+            CAESAR_EN_SHIFT.name = "CAESAR_EN_SHIFT";
+            container.appendChild(CAESAR_EN_SHIFT);
+            break;
+          case "AFFINE_EN":
+            var AFFINE_EN_A = document.createElement("input");
+            AFFINE_EN_A.type = "number";
+            AFFINE_EN_A.name = "AFFINE_EN_A";
+            container.appendChild(AFFINE_EN_A);
+            var AFFINE_EN_B = document.createElement("input");
+            AFFINE_EN_B.type = "number";
+            AFFINE_EN_B.name = "AFFINE_EN_B";
+            container.appendChild(AFFINE_EN_B);
+            break;
+          case "CAESAR_DE":
+            var CAESAR_DE_SHIFT = document.createElement("input");
+            CAESAR_DE_SHIFT.type = "number";
+            CAESAR_DE_SHIFT.name = "CAESAR_DE_SHIFT";
+            container.appendChild(CAESAR_DE_SHIFT);
+            break;
+          case "AFFINE_DE":
+            var AFFINE_DE_A = document.createElement("input");
+            AFFINE_DE_A.type = "number";
+            AFFINE_DE_A.name = "AFFINE_DE_A";
+            container.appendChild(AFFINE_DE_A);
+            var AFFINE_DE_B = document.createElement("input");
+            AFFINE_DE_B.type = "number";
+            AFFINE_DE_B.name = "AFFINE_DE_B";
+            container.appendChild(AFFINE_DE_B);
+            break;
+          default:
+            break;
+        }
       }
     </script>
     {% endblock %}
