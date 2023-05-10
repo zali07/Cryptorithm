@@ -14,51 +14,13 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{url_for('static',filename='base.css')}}"
+    />
+
     <title>{% block title %}Home{% endblock %}</title>
-
-    <style>
-      html,
-      body {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-      }
-
-      #container {
-        overflow: hidden;
-        position: relative;
-      }
-
-      #msg {
-        -webkit-animation: cssAnimation 3s forwards;
-        animation: cssAnimation 3s forwards;
-      }
-
-      @keyframes cssAnimation {
-        0% {
-          opacity: 1;
-        }
-        90% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 0;
-        }
-      }
-
-      @-webkit-keyframes cssAnimation {
-        0% {
-          opacity: 1;
-        }
-        90% {
-          opacity: 1;
-        }
-        100% {
-          opacity: 0;
-        }
-      }
-    </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -132,61 +94,6 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-
-    {% block javascript %}
-    <script type="text/javascript">
-      function deleteNote(noteId) {
-        fetch("/delete-note", {
-          method: "POST",
-          body: JSON.stringify({ noteId: noteId }),
-        }).then((_res) => {
-          window.location.href = "/";
-        });
-      }
-      function addInputs() {
-        var select = document.getElementById("enty");
-        var option = select.options[select.selectedIndex].value;
-        var container = document.getElementById("inputContainer");
-        container.innerHTML = "";
-
-        switch (option) {
-          case "CAESAR_EN":
-            var CAESAR_EN_SHIFT = document.createElement("input");
-            CAESAR_EN_SHIFT.type = "number";
-            CAESAR_EN_SHIFT.name = "CAESAR_EN_SHIFT";
-            container.appendChild(CAESAR_EN_SHIFT);
-            break;
-          case "AFFINE_EN":
-            var AFFINE_EN_A = document.createElement("input");
-            AFFINE_EN_A.type = "number";
-            AFFINE_EN_A.name = "AFFINE_EN_A";
-            container.appendChild(AFFINE_EN_A);
-            var AFFINE_EN_B = document.createElement("input");
-            AFFINE_EN_B.type = "number";
-            AFFINE_EN_B.name = "AFFINE_EN_B";
-            container.appendChild(AFFINE_EN_B);
-            break;
-          case "CAESAR_DE":
-            var CAESAR_DE_SHIFT = document.createElement("input");
-            CAESAR_DE_SHIFT.type = "number";
-            CAESAR_DE_SHIFT.name = "CAESAR_DE_SHIFT";
-            container.appendChild(CAESAR_DE_SHIFT);
-            break;
-          case "AFFINE_DE":
-            var AFFINE_DE_A = document.createElement("input");
-            AFFINE_DE_A.type = "number";
-            AFFINE_DE_A.name = "AFFINE_DE_A";
-            container.appendChild(AFFINE_DE_A);
-            var AFFINE_DE_B = document.createElement("input");
-            AFFINE_DE_B.type = "number";
-            AFFINE_DE_B.name = "AFFINE_DE_B";
-            container.appendChild(AFFINE_DE_B);
-            break;
-          default:
-            break;
-        }
-      }
-    </script>
-    {% endblock %}
+    <script src="{{ url_for('static', filename='base.js') }}"></script>
   </body>
 </html>
