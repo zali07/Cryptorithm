@@ -7,6 +7,23 @@ function deleteNote(noteId) {
   });
 }
 
+function createInputElement(inputName) {
+  var container = document.getElementById("inputContainer");
+  var element = document.createElement("input");
+  element.type = "number";
+  element.name = inputName;
+  element.required = true;
+  container.appendChild(element);
+}
+
+function createLabelElement(labelName) {
+  var container = document.getElementById("inputContainer");
+  var element = document.createElement("label");
+  element.innerHTML = labelName;
+  element.classList.add("algLabel");
+  container.appendChild(element);
+}
+
 function addInputs() {
   var select = document.getElementById("enty");
   var option = select.options[select.selectedIndex].value;
@@ -15,38 +32,48 @@ function addInputs() {
 
   switch (option) {
     case "CAESAR_EN":
-      var CAESAR_EN_SHIFT = document.createElement("input");
-      CAESAR_EN_SHIFT.type = "number";
-      CAESAR_EN_SHIFT.name = "CAESAR_EN_SHIFT";
-      container.appendChild(CAESAR_EN_SHIFT);
+      createLabelElement("Shift:");
+      createInputElement("CAESAR_EN_SHIFT");
       break;
     case "AFFINE_EN":
-      var AFFINE_EN_A = document.createElement("input");
-      AFFINE_EN_A.type = "number";
-      AFFINE_EN_A.name = "AFFINE_EN_A";
-      container.appendChild(AFFINE_EN_A);
-      var AFFINE_EN_B = document.createElement("input");
-      AFFINE_EN_B.type = "number";
-      AFFINE_EN_B.name = "AFFINE_EN_B";
-      container.appendChild(AFFINE_EN_B);
+      createLabelElement("a:");
+      createInputElement("AFFINE_EN_A");
+      createLabelElement("b:");
+      createInputElement("AFFINE_EN_B");
       break;
     case "CAESAR_DE":
-      var CAESAR_DE_SHIFT = document.createElement("input");
-      CAESAR_DE_SHIFT.type = "number";
-      CAESAR_DE_SHIFT.name = "CAESAR_DE_SHIFT";
-      container.appendChild(CAESAR_DE_SHIFT);
+      createLabelElement("Shift:");
+      createInputElement("CAESAR_DE_SHIFT");
       break;
     case "AFFINE_DE":
-      var AFFINE_DE_A = document.createElement("input");
-      AFFINE_DE_A.type = "number";
-      AFFINE_DE_A.name = "AFFINE_DE_A";
-      container.appendChild(AFFINE_DE_A);
-      var AFFINE_DE_B = document.createElement("input");
-      AFFINE_DE_B.type = "number";
-      AFFINE_DE_B.name = "AFFINE_DE_B";
-      container.appendChild(AFFINE_DE_B);
+      createLabelElement("a:");
+      createInputElement("AFFINE_DE_A");
+      createLabelElement("b:");
+      createInputElement("AFFINE_DE_B");
       break;
     default:
       break;
   }
 }
+
+const wrapper = document.querySelector(".wrapper");
+const loginLink = document.querySelector(".login-link");
+const signupLink = document.querySelector(".signup-link");
+const btnLogin = document.querySelector(".btnLogin-popup");
+const iconClose = document.querySelector(".icon-close");
+
+loginLink.addEventListener("click", () => {
+  wrapper.classList.remove("active");
+});
+
+signupLink.addEventListener("click", () => {
+  wrapper.classList.add("active");
+});
+
+btnLogin.addEventListener("click", () => {
+  wrapper.classList.add("active-popup");
+});
+
+iconClose.addEventListener("click", () => {
+  wrapper.classList.remove("active-popup");
+});

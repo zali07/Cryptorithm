@@ -1,3 +1,66 @@
+#container {
+  position: fixed;
+  width: 45%;
+}
+
+#sbmButton {
+  width: 30%;
+}
+
+#ptext {
+  height: 150px;
+  max-height: 200px;
+  min-height: 50px;
+  width: 100%;
+  margin-top: 3px;
+}
+
+#algChooser {
+  color: rgba(241, 196, 15, 0.9);
+  font-size: large;
+}
+
+#homeTitle {
+  color: rgba(241, 196, 15, 0.9);
+}
+
+#msg {
+  -webkit-animation: cssAnimation 3s forwards;
+  animation: cssAnimation 3s forwards;
+  left: -30%;
+}
+
+#notes {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  table-layout: fixed;
+}
+
+@keyframes cssAnimation {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes cssAnimation {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,7 +73,7 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url("/images/CryptorithmBackground.png") no-repeat;
+  background: url(images/CryptorithmBackground.png) no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -18,13 +81,26 @@ body {
 header {
   position: fixed;
   top: 0;
-  left: 70%;
-  width: 100%;
+  right: 10%;
+  width: 60%;
+  height: 22%;
   padding: 4.3% 0%;
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
   align-items: center;
   z-index: 99;
+}
+
+.algLabel {
+  color: rgba(241, 196, 15, 0.9);
+  font-size: medium;
+  padding: 10px;
+}
+
+.list-contanier {
+  max-height: 250px;
+  overflow-y: auto;
+  border-radius: 2px;
 }
 
 .navigation a {
@@ -34,6 +110,7 @@ header {
   text-decoration: none;
   font-weight: 500;
   margin-left: 40px;
+  display: inline;
 }
 
 .navigation a::after {
@@ -79,6 +156,7 @@ header {
   position: relative;
   width: 400px;
   height: 440px;
+  left: 25%;
   background: transparent;
   border: 2px solid (255, 255, 255, 0.5);
   border-radius: 20px;
@@ -223,4 +301,31 @@ header {
 
 .login-signup p a:hover {
   text-decoration: underline;
+}
+
+#containerAbout {
+  width: 90%;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+}
+
+/* Left and right column */
+.column.side {
+  width: 25%;
+}
+
+/* Middle column */
+.column.middle {
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
 }

@@ -1,79 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Cryptorithm</title>
-    <link rel="stylesheet" href="cryptorithm.css" />
-  </head>
+{% extends "base.html" %} {% block title %}Crypto{% endblock %} {% block
+content%}
 
-  <body>
-    <header>
-      <nav class="navigation">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <button class="btnLogin-popup">Login</button>
-      </nav>
-    </header>
-
-    <div class="wrapper">
-      <span class="icon-close"><ion-icon name="close"></ion-icon></span>
-      <div class="form-box login">
-        <h2>Login</h2>
-        <form action="#">
-          <div class="input-box">
-            <span class="icon"><ion-icon name="mail"></ion-icon></span>
-            <input type="email" required />
-            <label>Email</label>
-          </div>
-          <div class="input-box">
-            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="password" required />
-            <label>Password</label>
-          </div>
-          <button type="submit" class="btn">Login</button>
-          <div class="login-signup">
-            <p>Don't have an account?</p>
-            <a href="#" class="signup-link">Sign Up</a>
-          </div>
-        </form>
+<div class="wrapper">
+  <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+  <div class="form-box login">
+    <h2>Login</h2>
+    <form method="POST">
+      <div class="input-box">
+        <span class="icon"><ion-icon name="mail"></ion-icon></span>
+        <input type="email" name="email" required />
+        <label>Email</label>
       </div>
-
-      <div class="form-box signup">
-        <h2>Sign Up</h2>
-        <form action="#">
-          <div class="input-box">
-            <span class="icon"><ion-icon name="mail"></ion-icon></span>
-            <input type="email" required />
-            <label>Email</label>
-          </div>
-          <div class="input-box">
-            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="password" required />
-            <label>Password</label>
-          </div>
-          <div class="input-box">
-            <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-            <input type="password" required />
-            <label>Password (Confirm)</label>
-          </div>
-          <button type="submit" class="btn">Sign Up</button>
-          <div class="login-signup">
-            <p>Already have an account?</p>
-            <a href="#" class="login-link">Login</a>
-          </div>
-        </form>
+      <div class="input-box">
+        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+        <input type="password" name="password" required />
+        <label>Password</label>
       </div>
-    </div>
+      <button type="submit" class="btn" value="login" name="submit_button">
+        Login
+      </button>
+      <div class="login-signup">
+        <p>Don't have an account?</p>
+        <a href="#" class="signup-link">Sign Up</a>
+      </div>
+    </form>
+  </div>
 
-    <script src="cryptorithm.js"></script>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
-  </body>
-</html>
+  <div class="form-box signup">
+    <h2>Sign Up</h2>
+    <form method="POST">
+      <div class="input-box">
+        <span class="icon"><ion-icon name="mail"></ion-icon></span>
+        <input type="email" name="signupEmail" required />
+        <label>Email</label>
+      </div>
+      <div class="input-box">
+        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+        <input type="password" name="signupPass1" required />
+        <label>Password</label>
+      </div>
+      <div class="input-box">
+        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+        <input type="password" name="signupPass2" required />
+        <label>Password (Confirm)</label>
+      </div>
+      <button type="submit" class="btn" value="signup" name="submit_button">
+        Sign Up
+      </button>
+      <div class="login-signup">
+        <p>Already have an account?</p>
+        <a href="#" class="login-link">Login</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
