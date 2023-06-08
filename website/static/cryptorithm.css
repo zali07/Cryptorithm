@@ -1,6 +1,7 @@
 #container {
   position: fixed;
   width: 45%;
+  padding-top: 20px;
 }
 
 #sbmButton {
@@ -35,6 +36,10 @@
   margin: 0;
   padding: 0;
   table-layout: fixed;
+}
+
+#inputContainer {
+  max-width: 80%;
 }
 
 @keyframes cssAnimation {
@@ -97,7 +102,7 @@ header {
   padding: 10px;
 }
 
-.list-contanier {
+.list-container {
   max-height: 250px;
   overflow-y: auto;
   border-radius: 2px;

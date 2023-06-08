@@ -7,10 +7,19 @@ function deleteNote(noteId) {
   });
 }
 
-function createInputElement(inputName) {
+function createInputElementNumber(inputName) {
   var container = document.getElementById("inputContainer");
   var element = document.createElement("input");
   element.type = "number";
+  element.name = inputName;
+  element.required = true;
+  container.appendChild(element);
+}
+
+function createInputElementText(inputName) {
+  var container = document.getElementById("inputContainer");
+  var element = document.createElement("input");
+  element.type = "text";
   element.name = inputName;
   element.required = true;
   container.appendChild(element);
@@ -32,24 +41,48 @@ function addInputs() {
 
   switch (option) {
     case "CAESAR_EN":
-      createLabelElement("Shift:");
-      createInputElement("CAESAR_EN_SHIFT");
+      createLabelElement("shift:");
+      createInputElementNumber("CAESAR_EN_SHIFT");
+      break;
+    case "CAESAR_DE":
+      createLabelElement("shift:");
+      createInputElementNumber("CAESAR_DE_SHIFT");
       break;
     case "AFFINE_EN":
       createLabelElement("a:");
-      createInputElement("AFFINE_EN_A");
+      createInputElementNumber("AFFINE_EN_A");
       createLabelElement("b:");
-      createInputElement("AFFINE_EN_B");
-      break;
-    case "CAESAR_DE":
-      createLabelElement("Shift:");
-      createInputElement("CAESAR_DE_SHIFT");
+      createInputElementNumber("AFFINE_EN_B");
       break;
     case "AFFINE_DE":
       createLabelElement("a:");
-      createInputElement("AFFINE_DE_A");
+      createInputElementNumber("AFFINE_DE_A");
       createLabelElement("b:");
-      createInputElement("AFFINE_DE_B");
+      createInputElementNumber("AFFINE_DE_B");
+      break;
+    case "AES-128_CTR_EN":
+      createLabelElement("password:");
+      createInputElementText("AES-128-CTR_PASS");
+      break;
+    case "AES-128_CTR_DE":
+      createLabelElement("salt:");
+      createInputElementText("AES-128-CTR_SALT");
+      createLabelElement("key:");
+      createInputElementText("AES-128-CTR_KEY");
+      createLabelElement("nonce:");
+      createInputElementText("AES-128-CTR_NONCE");
+      break;
+    case "AES-256_CTR_EN":
+      createLabelElement("password:");
+      createInputElementText("AES-256-CTR_PASS");
+      break;
+    case "AES-256_CTR_DE":
+      createLabelElement("salt:");
+      createInputElementText("AES-256-CTR_SALT");
+      createLabelElement("key:");
+      createInputElementText("AES-256-CTR_KEY");
+      createLabelElement("nonce:");
+      createInputElementText("AES-256-CTR_NONCE");
       break;
     default:
       break;

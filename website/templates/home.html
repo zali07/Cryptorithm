@@ -1,10 +1,13 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
 <h1 align="center" id="homeTitle">History</h1>
-<div class="list-contanier">
+<div class="list-container">
   <ul class="list-group list-group-flush" id="notes">
-    {% for note in user.notes %}
+    {% for note in user.notes %} {% set length = note.data|length %}
     <li class="list-group-item">
-      {{ note.data }}
+      {% for i in range(0, length, 65) %} {{ note.data[i:i+65] }} {% if i + 65 <
+      length %}
+      <br />
+      {% endif %} {% endfor %}
       <button type="button" class="close" onClick="deleteNote({{ note.id }})">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -24,13 +27,23 @@
   <label for="encryptype" id="algChooser">Choose an algorithm:</label>
   <select name="enty" id="enty" onchange="addInputs()">
     <option value="" disabled selected>None</option>
-    <optgroup label="Encrypt">
-      <option value="CAESAR_EN">Caesar</option>
-      <option value="AFFINE_EN">Affine</option>
+    <optgroup label="Data Transformation">
+      <option value="CAESAR_EN">Caesar EN</option>
+      <option value="CAESAR_DE">Caesar DE</option>
+      <option value="AFFINE_EN">Affine EN</option>
+      <option value="AFFINE_DE">Affine DE</option>
     </optgroup>
-    <optgroup label="Decrypt">
-      <option value="CAESAR_DE">Caesar</option>
-      <option value="AFFINE_DE">Affine</option>
+    <optgroup label="Hash">
+      <option value="SHA-1">SHA-1</option>
+      <option value="SHA-256">SHA-256</option>
+      <option value="SHA-384">SHA-384</option>
+      <option value="SHA-512">SHA-512</option>
+    </optgroup>
+    <optgroup label="Block Cipher">
+      <option value="AES-128_CTR_EN">AES-128 CTR EN</option>
+      <!-- <option value="AES-128_CTR_DE">AES-128 CTR DE</option> -->
+      <option value="AES-256_CTR_EN">AES-256 CTR EN</option>
+      <!-- <option value="AES-256_CTR_DE">AES-256 CTR DE</option> -->
     </optgroup>
   </select>
   <div id="inputContainer"></div>

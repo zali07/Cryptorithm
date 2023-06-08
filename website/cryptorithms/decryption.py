@@ -71,22 +71,3 @@ def mod_inverse(a, m):
     if t < 0:
         t = t + m
     return t
-
-
-# hill
-
-
-
-# rc4, lfsr, a51
-
-
-
-# cbc, ctr, des, aes
-
-
-
-# rsa
-
-
-
-# rabin, saep

@@ -1,5 +1,6 @@
 import random
 
+#DATATRANSFORMATION
 # caesar
 def caesar_encrypt(plaintext, shift):
     """
@@ -36,24 +37,3 @@ def generate_affine_key():
     a = random.choice([1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25])
     b = random.randint(0, 25)
     return a, b
-
-
-# hill
-
-
-
-# rc4, lfsr, a51
-
-
-
-# cbc, ctr, des, aes
-
-
-
-# rsa
-
-
-
-# rabin, saep
-
-
