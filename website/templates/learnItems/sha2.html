@@ -1,0 +1,103 @@
+{% extends "learning.html" %} {% block title %}SHA-2{% endblock %} {% block
+middleLearning%}
+<div class="p1" data-id="1">
+  <h2>SHA-2 Origin</h2>
+  <p>
+    The successor of <a href="/learning/sha1">SHA-1</a>, approved and
+    recommended by NIST, SHA-2 is a family of six algorithms with different
+    digest sizes (in bits): SHA-224, SHA-256, SHA-384, SHA-512, SHA-512/224,
+    SHA-512/256. The first four use the same construction with different output
+    sizes, while the last two are truncated versions of SHA-512, where the
+    initial values are generated using the method described in
+    <a
+      href="https://en.wikipedia.org/wiki/Federal_Information_Processing_Standards"
+      target="_blank"
+      >FIPS 180-4</a
+    >.
+  </p>
+  <p>
+    Three main purposes of a hash function are:
+    <br />
+    - To scramble data deterministically
+    <br />
+    - To accept an input of arbitrary length and output a fixed-length result
+    <br />
+    - To manipulate data irreversibly
+  </p>
+  <p>
+    The input cannot be derived from the output SHA-2 is a strong family of hash
+    functions because, as you would expect, it serves all the purposes mentioned
+    above.
+  </p>
+  <div id="imgOrigin">
+    <span>Input</span>
+    <img
+      width="80%"
+      src="{{url_for('static',filename='images/sha2cryptorithm.png')}}"
+    />
+    <span>Output</span>
+  </div>
+</div>
+<div class="p2" data-id="2">
+  <h2>SHA-2 Description</h2>
+  <p>
+    The input message is processed in blocks of 512 bits. If the message length
+    is not a multiple of 512 bits, padding is added to the message to bring it
+    to the appropriate length. The padding includes a "1" bit followed by a
+    series of "0" bits, and the length of the original message is appended.
+  </p>
+  <p>
+    The buffer is represented as eight 32-bit registers (A, B, C, D, E, F, G,
+    H).
+  </p>
+  <p>
+    The message is broken into 512 bits chunks, and each chunk goes through a
+    complex process and 64 rounds of compression. The value obtained after each
+    compression is added to the current hash value.
+  </p>
+  <p>
+    The final hash value or digest is concatenated (linked together) based on
+    all of the chunk values resulting from the processing step.
+  </p>
+</div>
+
+<div class="p3" data-id="3">
+  <h2>SHA-2 Security / Usage</h2>
+  <p>
+    SHA-2 is known for its security (it hasn't broken down like SHA-1) and its
+    speed. In cases where keys are not generated, such as proof-of-work Bitcoin
+    mining, a fast hash algorithm like SHA-2 often has the upper hand.
+  </p>
+  <p>
+    SHA-256 is useful in so many circumstances! It's a fast and secure hash
+    function, here are some of the most common ways that it's used:
+    <br />
+    - To create website authentication schemes, using JWTs, HMACs and MACs
+    <br />
+    - To create digital signatures
+    <br />
+    - To secure blockchains like Bitcoin and Ethereum
+    <br />
+    - In anti-viruses, to compare the fingerprints of files and programs
+    <br />
+    - In version control systems like Git to check if data has changed
+  </p>
+  <p>After all, in SHA-256 there are 2^256 possible outputs.</p>
+</div>
+
+<div id="footer">
+  <form id="moveBtns">
+    <span>
+      <input class="moveBtn" type="button" name="prev" value="Previous" />
+      <input class="moveBtn" type="button" name="next" value="Next" />
+    </span>
+  </form>
+</div>
+
+{% endblock %} {% block sideLearning%}
+<img
+  class="p2"
+  width="100%"
+  src="{{url_for('static',filename='images/sha2-hashing-algorithm.png')}}"
+/>
+{% endblock %}

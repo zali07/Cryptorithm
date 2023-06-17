@@ -65,8 +65,6 @@ function addInputs() {
       createInputElementText("AES-128-CTR_PASS");
       break;
     case "AES-128_CTR_DE":
-      createLabelElement("salt:");
-      createInputElementText("AES-128-CTR_SALT");
       createLabelElement("key:");
       createInputElementText("AES-128-CTR_KEY");
       createLabelElement("nonce:");
@@ -77,8 +75,6 @@ function addInputs() {
       createInputElementText("AES-256-CTR_PASS");
       break;
     case "AES-256_CTR_DE":
-      createLabelElement("salt:");
-      createInputElementText("AES-256-CTR_SALT");
       createLabelElement("key:");
       createInputElementText("AES-256-CTR_KEY");
       createLabelElement("nonce:");

@@ -1,0 +1,104 @@
+{% extends "learning.html" %} {% block title %}SHA-1{% endblock %} {% block
+middleLearning%}
+<div class="p1" data-id="1">
+  <h2>SHA-1 Origin</h2>
+  <p>
+    The SHA-1 (Secure Hash Algorithm 1) hash function, designed by the
+    <a href="https://en.wikipedia.org/wiki/National_Security_Agency">NSA</a>
+    (National Security Agency), takes an input and produces a 160-bit (20-byte)
+    hash value known as a message digest - typically rendered as 40 hexadecimal
+    digits. SHA-1 is the most established of the existing SHA hash functions and
+    it is used in a variety of security applications and protocols. However,
+    SHA-1's collision resistance has been weakening as new attacks are
+    discovered or improved.
+  </p>
+  <div id="imgOrigin">
+    <span>Input</span>
+    <img
+      width="80%"
+      src="{{url_for('static',filename='images/sha1cryptorithm.png')}}"
+    />
+    <span>Output</span>
+  </div>
+</div>
+<div class="p2" data-id="2">
+  <h2>SHA-1 Description</h2>
+  <p>
+    The input message is processed in blocks of 512 bits. If the message length
+    is not a multiple of 512 bits, padding is added to the message to bring it
+    to the appropriate length. The padding includes a "1" bit followed by a
+    series of "0" bits, and the length of the original message is appended.
+  </p>
+  <p>
+    This algorithm requires two buffers and a long sequence of 32-bit words:
+    <br />
+    The two five 32-bit registers (“A, B, C, D, E” and “H0, H1, H2, H3, H4”)
+    have specific initial values, and the sequence of 80 32-bit words (W[0],
+    W[1], W[2]… W[78], W[79]).
+  </p>
+  <p>
+    The core of the SHA-1 algorithm is a compression function that operates on a
+    160-bit message block and the current state of the message digest. It
+    performs a series of operations, including bitwise logical functions,
+    message expansion, and modular addition.
+  </p>
+  <p>
+    The compression function is applied iteratively to each message block,
+    updating the message digest state as each block is processed. The final
+    output is the hash value of the input message.
+  </p>
+  <p>
+    Each block goes through a complex process of expansion and 80 rounds of
+    compression of 20 steps each. The value obtained after each compression is
+    added to the current buffer (hash state).
+  </p>
+  <p>
+    The resulting hash value is a fixed-size digest of 160 bits. It represents a
+    unique fingerprint of the input message, making it highly improbable for two
+    different messages to produce the same hash value.
+  </p>
+</div>
+
+<div class="p3" data-id="3">
+  <h2>SHA-1 Security</h2>
+  <p>
+    One of the main vulnerabilities of SHA-1 is its reduced collision
+    resistance. A collision occurs when two different inputs produce the same
+    hash output. In 2005, researchers demonstrated a theoretical collision
+    attack on SHA-1, and in 2017, an actual collision attack was successfully
+    executed, highlighting the practical security risks.
+  </p>
+  <p>
+    Due to the identified vulnerabilities, SHA-1 is considered deprecated and
+    not recommended for use in new cryptographic applications. Instead, stronger
+    hash functions like SHA-256 or higher certificates are advised for improved
+    security.
+  </p>
+  <p>
+    Widely used in:
+    <br />
+    - Security applications and protocols (e.g., TLS, SSL, PGP, SSH, S/MIME,
+    Ipsec)
+    <br />
+    - Cryptocurrencies transactions validation
+    <br />
+    - Digital certificates
+  </p>
+</div>
+
+<div id="footer">
+  <form id="moveBtns">
+    <span>
+      <input class="moveBtn" type="button" name="prev" value="Previous" />
+      <input class="moveBtn" type="button" name="next" value="Next" />
+    </span>
+  </form>
+</div>
+
+{% endblock %} {% block sideLearning%}
+<img
+  class="p2"
+  width="100%"
+  src="{{url_for('static',filename='images/sha1-hashing-algorithm.png')}}"
+/>
+{% endblock %}

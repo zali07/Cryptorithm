@@ -1,0 +1,74 @@
+{% extends "learning.html" %} {% block title %}Caesar{% endblock %} {% block
+middleLearning%}
+<div class="p1" data-id="1">
+  <h2>Caesar - Origin</h2>
+  <p>
+    The Caesar cipher is named after Julius Caesar, the ancient Roman military
+    and political leader who is believed to have used this encryption technique.
+    The cipher is attributed to him, although it is likely that similar
+    techniques were used even earlier. Julius Caesar used the Caesar cipher to
+    protect sensitive military information during his campaigns. The shift of
+    letters provided a simple and effective way to conceal messages from enemies
+    who might intercept them.
+  </p>
+  <p>
+    The method involves shifting each letter in the plaintext by a fixed number
+    of positions, with Caesar's preferred shift being three positions. For
+    example, if the plaintext is "ATTACK AT DAWN", the ciphertext generated
+    using Caesar's cipher is "DWWDFN DW GDZQ".
+  </p>
+</div>
+<div class="p2" data-id="2">
+  <h2>Caesar - Description</h2>
+  <p>
+    Each letter is encrypted one by one with a different letter, i.e. the
+    letters are replaced one by one by the letter code assigned to them, always
+    assigning the same letter code to a letter. Which letter is replaced by
+    which letter is determined by the key k, which is an integer in the original
+    system. A letter will thus always be replaced by a letter k positions to the
+    right of the letter, and it is assumed that the letters are arranged in a
+    circle, i.e. the letter A is again placed after the letter Z.
+  </p>
+  <p>
+    Mathematically, it is defined by the following formula, where the letter p
+    is the numeric code, the letter k is the offset value (key) and c is the
+    secret numeric code:
+  </p>
+  <p align="center">c = (p + k) (mod 26)</p>
+  <p>
+    The decryption formula is the inverse of this, assuming that the encrypted
+    letter is c, then the mathematical formula is:
+  </p>
+  <p align="center">p = (c - k) (mod 26)</p>
+</div>
+
+<div class="p3" data-id="3">
+  <h2>Caesar - Key / Security</h2>
+  <p>
+    The key in the Caesar cipher is the number of positions each letter is
+    shifted. For example, a key of 3 means each letter is shifted three
+    positions down the alphabet.
+  </p>
+  <p>
+    The Caesar cipher is a very basic and easily breakable cipher. It has only
+    26 possible keys, making it vulnerable to brute-force attacks. It is often
+    used as an introductory example in cryptography, but it is not secure for
+    practical purposes.
+  </p>
+</div>
+
+<div id="footer">
+  <form id="moveBtns">
+    <span>
+      <input class="moveBtn" type="button" name="prev" value="Previous" />
+      <input class="moveBtn" type="button" name="next" value="Next" />
+    </span>
+  </form>
+</div>
+{% endblock %} {% block sideLearning%}
+<img
+  class="p1"
+  width="100%"
+  src="{{url_for('static',filename='images/caesarCipher.png')}}"
+/>
+{% endblock %}

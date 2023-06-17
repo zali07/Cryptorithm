@@ -4,12 +4,12 @@
   <ul class="list-group list-group-flush" id="notes">
     {% for note in user.notes %} {% set length = note.data|length %}
     <li class="list-group-item">
-      {% for i in range(0, length, 65) %} {{ note.data[i:i+65] }} {% if i + 65 <
+      {% for i in range(0, length, 60) %} {{ note.data[i:i+60] }} {% if i + 60 <
       length %}
       <br />
       {% endif %} {% endfor %}
       <button type="button" class="close" onClick="deleteNote({{ note.id }})">
-        <span aria-hidden="true">&times;</span>
+        <span class="closeBtn" aria-hidden="true">&times;</span>
       </button>
     </li>
     {% endfor %}
@@ -21,7 +21,7 @@
     name="ptext"
     id="ptext"
     class="form-control"
-    placeholder="Type some text to crypt..."
+    placeholder="Type the plaintext here..."
   ></textarea>
   <br />
   <label for="encryptype" id="algChooser">Choose an algorithm:</label>
@@ -41,9 +41,9 @@
     </optgroup>
     <optgroup label="Block Cipher">
       <option value="AES-128_CTR_EN">AES-128 CTR EN</option>
-      <!-- <option value="AES-128_CTR_DE">AES-128 CTR DE</option> -->
+      <option value="AES-128_CTR_DE">AES-128 CTR DE</option>
       <option value="AES-256_CTR_EN">AES-256 CTR EN</option>
-      <!-- <option value="AES-256_CTR_DE">AES-256 CTR DE</option> -->
+      <option value="AES-256_CTR_DE">AES-256 CTR DE</option>
     </optgroup>
   </select>
   <div id="inputContainer"></div>

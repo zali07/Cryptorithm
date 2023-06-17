@@ -18,8 +18,15 @@ class User(db.Model, UserMixin):
 
 class Data(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
     data = db.Column(db.String(10000))
-    cryptype = db.Column(db.String(1000))
+    cryptype = db.Column(db.String(100))
+    paramA = db.Column(db.String(100), nullable=True)
+    paramB = db.Column(db.String(100), nullable=True)
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+class Trasnslation(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    language = db.Column(db.String(3))
+    elementId = db.Column(db.Integer)
+    content = db.Column(db.String(10000))

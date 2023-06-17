@@ -96,6 +96,10 @@ header {
   z-index: 99;
 }
 
+.closeBtn {
+  color: black;
+}
+
 .algLabel {
   color: rgba(241, 196, 15, 0.9);
   font-size: medium;
@@ -308,8 +312,10 @@ header {
   text-decoration: underline;
 }
 
-#containerAbout {
+#containerLearn {
+  position: fixed;
   width: 90%;
+  top: 20%;
 }
 
 /* Create three unequal columns that floats next to each other */
@@ -319,7 +325,12 @@ header {
 }
 
 /* Left and right column */
-.column.side {
+.column.side.left {
+  width: 25%;
+  padding-top: 8%;
+}
+
+.column.side.right {
   width: 25%;
 }
 
