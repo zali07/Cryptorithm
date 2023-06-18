@@ -1,15 +1,17 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, Response
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
-
+from website import app_language, languages
 
 auth = Blueprint('auth', __name__)
 
 
-@auth.route('/login', methods=['GET', 'POST'])
-def login():
+@auth.route('/login/<language>', methods=['GET', 'POST'])
+def login(language):
+    if(language not in languages):
+        language = app_language
     if request.method == 'POST':
         submitType = request.form['submit_button']
         if submitType == 'login':
@@ -20,7 +22,7 @@ def login():
                 if check_password_hash(user.password, password):
                     flash('Logged in successfully!', category='success')
                     login_user(user, remember=True)
-                    return redirect(url_for('views.home'))
+                    return redirect(url_for('views.home', language=language))
                 else:
                     flash('Incorrect password, try again.', category='error')
             else:
@@ -47,12 +49,15 @@ def login():
                 db.session.commit()
                 login_user(new_user, remember=True)
                 flash('Account created!', category='success')
-                return redirect(url_for('views.home'))
-    return render_template("cryptorithm.html", user=current_user)
+                return redirect(url_for('views.home', language=language))
+    return render_template("cryptorithm.html", user=current_user, language=language, **languages[language])
 
 
-@auth.route('/logout')
+
+@auth.route('/logout/<language>', methods=['GET'])
 @login_required
-def logout():
+def logout(language):
     logout_user()
-    return redirect(url_for('auth.login'))
+    if(language not in languages):
+        language = app_language
+    return redirect(url_for('auth.login', language=language))

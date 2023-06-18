@@ -4,16 +4,19 @@ from .models import Note
 from . import db
 import json
 import base64
-from website.cryptorithms import dataTransformation as dat
-from website.cryptorithms import hashing as has
-from website.cryptorithms import blockCipherMode as bcm
+from .cryptorithms import dataTransformation as dat
+from .cryptorithms import hashing as has
+from .cryptorithms import blockCipherMode as bcm
+from . import app_language, languages
+
 
 views = Blueprint('views', __name__)
 
-
-@views.route('/', methods=['GET', 'POST'])
+@views.route('/<language>', methods=['GET', 'POST'])
 @login_required
-def home():
+def home(language):
+    if(language not in languages):
+        language = app_language
     if request.method == 'POST': 
         plaintext = request.form.get('ptext')
         selecter = request.form.get('enty')
@@ -54,12 +57,12 @@ def home():
                     key = base64.b64decode(key)
                     if len(key) != 16:
                         flash('Key length must be 16-bytes!', category='error')
-                        return render_template("home.html", user=current_user)
+                        return render_template("home.html", user=current_user, language=language, **languages[language])
                     nonce = request.form.get("AES-128-CTR_NONCE")
                     ciphertext = bcm.AES_CTR_DE(plaintext, key, nonce)
                     if ciphertext == None:
                         flash('Invalid credentials!', category='error')
-                        return render_template("home.html", user=current_user)
+                        return render_template("home.html", user=current_user, language=language, **languages[language])
                 case "AES-256_CTR_EN":
                     password = request.form.get("AES-256-CTR_PASS")
                     ciphertext, key, nonce = bcm.AES_CTR_EN(plaintext, password, 256)
@@ -69,43 +72,62 @@ def home():
                     key = base64.b64decode(key)
                     if len(key) != 32:
                         flash('Key length must be 32-bytes!', category='error')
-                        return render_template("home.html", user=current_user)
+                        return render_template("home.html", user=current_user, language=language, **languages[language])
                     nonce = request.form.get("AES-256-CTR_NONCE")
                     ciphertext = bcm.AES_CTR_DE(plaintext, key, nonce)
                     if ciphertext == None:
                         flash('Invalid credentials!', category='error')
-                        return render_template("home.html", user=current_user)
+                        return render_template("home.html", user=current_user, language=language, **languages[language])
             new_note = Note(data=ciphertext, user_id=current_user.id)
             db.session.add(new_note)
             db.session.commit()
             flash('Securely Transmitted!', category='success')
-    return render_template("home.html", user=current_user)
+    return render_template("home.html", user=current_user, language=language, **languages[language])
 
-@views.route('/learning', methods=['GET', 'POST'])
-def learning():
-    return render_template("learning.html", user=current_user)
+@views.route('/learning/<language>', methods=['GET', 'POST'])
+@login_required
+def learning(language):
+    if(language not in languages):
+        language = app_language
+    return render_template("learning.html", user=current_user, language=language, **languages[language])
 
-@views.route('/learning/caesar', methods=['GET', 'POST'])
-def caesar():
-    return render_template("/learnItems/caesar.html", user=current_user)
+@views.route('/learning/caesar/<language>', methods=['GET', 'POST'])
+@login_required
+def caesar(language):
+    if(language not in languages):
+        language = app_language
+    return render_template("/learnItems/caesar.html", user=current_user, language=language, **languages[language])
 
-@views.route('/learning/affin', methods=['GET', 'POST'])
-def affin():
-    return render_template("/learnItems/affin.html", user=current_user)
+@views.route('/learning/affin/<language>', methods=['GET', 'POST'])
+@login_required
+def affin(language):
+    if(language not in languages):
+        language = app_language
+    return render_template("/learnItems/affin.html", user=current_user, language=language, **languages[language])
 
-@views.route('/learning/sha1', methods=['GET', 'POST'])
-def sha1():
-    return render_template("/learnItems/sha1.html", user=current_user)
+@views.route('/learning/sha1/<language>', methods=['GET', 'POST'])
+@login_required
+def sha1(language):
+    if(language not in languages):
+        language = app_language
+    return render_template("/learnItems/sha1.html", user=current_user, language=language, **languages[language])
 
-@views.route('/learning/sha2', methods=['GET', 'POST'])
-def sha2():
-    return render_template("/learnItems/sha2.html", user=current_user)
+@views.route('/learning/sha2/<language>', methods=['GET', 'POST'])
+@login_required
+def sha2(language):
+    if(language not in languages):
+        language = app_language
+    return render_template("/learnItems/sha2.html", user=current_user, language=language, **languages[language])
 
-@views.route('/learning/aes', methods=['GET', 'POST'])
-def aes():
-    return render_template("/learnItems/aes.html", user=current_user)
+@views.route('/learning/aes/<language>', methods=['GET', 'POST'])
+@login_required
+def aes(language):
+    if(language not in languages):
+        language = app_language
+    return render_template("/learnItems/aes.html", user=current_user, language=language, **languages[language])
 
 @views.route('/delete-note', methods=['POST'])
+@login_required
 def delete_note():  
     note = json.loads(request.data)
     noteId = note['noteId']

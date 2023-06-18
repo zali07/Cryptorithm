@@ -17,7 +17,6 @@ let id = 1;
 function movePara(e) {
   console.log("movePara");
   let name = this.name;
-  // document.getElementById("p" + id).style.display = "none";
   Array.from(document.querySelectorAll(".p" + id)).forEach(function (it) {
     it.style.display = "none";
   });
@@ -28,7 +27,6 @@ function movePara(e) {
     } else {
       ++id;
     }
-    // document.getElementById("p" + id).style.display = "block";
     Array.from(document.querySelectorAll(".p" + id)).forEach(function (it) {
       it.style.display = "block";
     });
@@ -39,7 +37,6 @@ function movePara(e) {
     } else {
       --id;
     }
-    // document.getElementById("p" + id).style.display = "block";
     Array.from(document.querySelectorAll(".p" + id)).forEach(function (it) {
       it.style.display = "block";
     });

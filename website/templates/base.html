@@ -30,15 +30,15 @@
     {% endif %} {% endfor %} {% endif %} {% endwith %}
     <nav class="navigation">
       <select class="form-control" id="langSwitcher">
-        <option value="en">English</option>
-        <option value="hu">Magyar</option>
+        <option value="en" {% if language=="en" %} selected {% endif %}>EN</option>
+        <option value="hu" {% if language=="hu" %} selected {% endif %}>HU</option>
       </select>
       {% if user.is_authenticated %}
-      <a class="nav-item nav-link" href="/">Crypt</a>
-      <a class="nav-item nav-link" href="/learning">Learning</a>
-      <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
+      <a class="nav-item nav-link" href="/{{ language }}">Crypt</a>
+      <a class="nav-item nav-link" href="/learning/{{ language }}">Learning</a>
+      <a class="nav-item nav-link" id="logout" href="/logout/{{ language }}">Logout</a>
       {% else %}
-      <button class="btnLogin-popup">Login</button>
+      <button class="btnLogin-popup">{{ login }}</button>
       {% endif %}
     </nav>
   </header>

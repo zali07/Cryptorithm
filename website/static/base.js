@@ -85,6 +85,10 @@ function addInputs() {
   }
 }
 
+$("#langSwitcher").on("change", function () {
+  window.location = window.location.href.slice(0, -2) + $(this).val();
+});
+
 const wrapper = document.querySelector(".wrapper");
 const loginLink = document.querySelector(".login-link");
 const signupLink = document.querySelector(".signup-link");
