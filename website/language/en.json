@@ -1,19 +1,71 @@
 {
-  "last_updated": "Last updated on",
-  "dashboard_title": "My Dashboard",
-  "message": "Messages",
-  "view": "Views",
-  "share": "Shares",
-  "general_stat": "General Stats",
-  "new_visitor": "New Visitors",
-  "new_user": "New Users",
-  "login": "LOGIN",
-  "country_list": {
-    "germany": "Germany",
-    "united_kingdom": "UK",
-    "russia": "Russia",
-    "spain": "Spain",
-    "india": "India",
-    "france": "France"
+  "base": {
+    "crypt": "Crypt",
+    "learning": "Learning",
+    "logout": "Logout",
+    "login": "Login"
+  },
+  "cryptorithm": {
+    "login": "Login",
+    "email": "Email",
+    "password": "Password",
+    "no_account": "Don't have an account?",
+    "signup": "Sign Up",
+    "password_confirm": "Password (Confirm)",
+    "already_account": "Already have an account?"
+  },
+  "home": {
+    "history": "History",
+    "choose": "User"
+  },
+  "learning": {
+    "learn_about": "Dashboard",
+    "list1": "User",
+    "list2": "User List",
+    "list3": "Add User"
+  },
+  "caesar": {
+    "title1": "Caesar - Origin",
+    "title2": "Caesar - Description",
+    "title3": "Caesar - Key / Security",
+    "title1_1": "The Caesar cipher is named after Julius Caesar, the ancient Roman military and political leader who is believed to have used this encryption technique. The cipher is attributed to him, although it is likely that similar techniques were used even earlier. Julius Caesar used the Caesar cipher to protect sensitive military information during his campaigns. The shift of letters provided a simple and effective way to conceal messages from enemies who might intercept them.",
+    "title1_2": "The method involves shifting each letter in the plaintext by a fixed number of positions, with Caesar's preferred shift being three positions. For example, if the plaintext is \"ATTACK AT DAWN\", the ciphertext generated using Caesar's cipher is \"DWWDFN DW GDZQ\".",
+    "title2_1": "Each letter is encrypted one by one with a different letter, i.e. the letters are replaced one by one by the letter code assigned to them, always assigning the same letter code to a letter. Which letter is replaced by which letter is determined by the key k, which is an integer in the original system. A letter will thus always be replaced by a letter k positions to the right of the letter, and it is assumed that the letters are arranged in a circle, i.e. the letter A is again placed after the letter Z.",
+    "title2_2": "Mathematically, it is defined by the following formula, where the letter p is the numeric code, the letter k is the offset value (key) and c is the secret numeric code:",
+    "title2_3": "The decryption formula is the inverse of this, assuming that the encrypted letter is c, then the mathematical formula is:",
+    "title3_1": "The key in the Caesar cipher is the number of positions each letter is shifted. For example, a key of 3 means each letter is shifted three positions down the alphabet.",
+    "title3_2": "The Caesar cipher is a very basic and easily breakable cipher. It has only 26 possible keys, making it vulnerable to brute-force attacks. It is often used as an introductory example in cryptography, but it is not secure for practical purposes."
+  },
+  "affin": {
+    "title1": "Affin - Origin",
+    "title2": "Affin - Description",
+    "title3": "Affin - Security / Example",
+    "title1_1": "The Affine cipher has its roots in ancient civilizations. It is believed to have been used by the Romans around the 1st century BC. The Roman military commander Julius Caesar is often associated with an early version of the Affine cipher, known as the Caesar cipher or Caesar's cipher.",
+    "title1_2": "The concept of the Affine cipher as a generalization of the Caesar cipher emerged later. The Affine cipher was developed as a more advanced cryptographic technique that allowed for a wider range of encryption possibilities.",
+    "title2_1": "The Affine cipher is based on the mathematical concept of an affine transformation. An affine transformation is a linear function that combines two operations: a multiplication (modular arithmetic) and an addition (modulo operation).",
+    "title2_2": "The parameters used in the Affine cipher are the encryption key ('a') and the modular arithmetic base ('b'). Assuming that 'p' is the numerical code of a letter in the plaintext and 'c' is its corresponding to the encrypted numeric code, the encryption formula is as follows:",
+    "title2_3_1": "If the",
+    "title2_3_2": "is the multiplicative inverse of the number 'a' according to 26, i.e the following relation holds:",
+    "title2_4": "then the decryption formula will be:",
+    "title3_1": "Over time, cryptanalysts have developed techniques to break the Affine cipher. The simplicity of the algorithm and the limited key space make it susceptible to brute-force attacks and frequency analysis methods.",
+    "title3_2": "Although the Affine cipher is no longer considered secure for modern cryptographic purposes, it is still studied and used in educational settings to illustrate fundamental concepts of encryption and decryption. It serves as an introduction to more complex ciphers and cryptographic techniques."
+  },
+  "aes": {
+    "title1": "Dashboard",
+    "title2": "User",
+    "title3": "User",
+    "title1_1": "Add"
+  },
+  "sha1": {
+    "title1": "Dashboard",
+    "title2": "User",
+    "title3": "User",
+    "title1_1": "Add"
+  },
+  "sha2": {
+    "title1": "Dashboard",
+    "title2": "User",
+    "title3": "User",
+    "title1_1": "Add"
   }
 }
