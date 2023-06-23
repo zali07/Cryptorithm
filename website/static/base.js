@@ -1,9 +1,10 @@
-function deleteNote(noteId) {
-  fetch("/delete-note", {
+function deleteData(dataId, lang) {
+  fetch("/delete-data", {
     method: "POST",
-    body: JSON.stringify({ noteId: noteId }),
+    body: JSON.stringify({ dataId: dataId }),
   }).then((_res) => {
-    window.location.href = "/";
+    console.log(lang);
+    window.location.href = "/" + lang;
   });
 }
 

@@ -1,14 +1,18 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
-<h1 align="center" id="homeTitle">History</h1>
+<h1 align="center" id="homeTitle">{{home.history}}</h1>
 <div class="list-container">
-  <ul class="list-group list-group-flush" id="notes">
-    {% for note in user.notes %} {% set length = note.data|length %}
+  <ul class="list-group list-group-flush" id="data">
+    {% for data in user.datas %} {% set length = data.data|length %}
     <li class="list-group-item">
-      {% for i in range(0, length, 60) %} {{ note.data[i:i+60] }} {% if i + 60 <
-      length %}
-      <br />
-      {% endif %} {% endfor %}
-      <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      {% for i in range(0, length, 60) %}
+      {{ data.data[i:i+60] }}
+      {% if i + 60
+      < length %} <br />{% endif %}
+      {% endfor %}
+      <br />Type: {{data.cryptype}}
+      {% if data.paramA != "" %}<br />Parameter A: {{data.paramA}}{% endif %}
+      {% if data.paramB != "" %}<br />Parameter B: {{data.paramB}}{% endif %}
+      <button type="button" class="close" onClick="deleteData({{ data.id }},'{{language}}')">
         <span class="closeBtn" aria-hidden="true">&times;</span>
       </button>
     </li>
@@ -17,14 +21,9 @@
 </div>
 
 <form method="POST">
-  <textarea
-    name="ptext"
-    id="ptext"
-    class="form-control"
-    placeholder="Type the plaintext here..."
-  ></textarea>
+  <textarea name="ptext" id="ptext" class="form-control" placeholder="Type the plaintext here..."></textarea>
   <br />
-  <label for="encryptype" id="algChooser">Choose an algorithm:</label>
+  <label for="encryptype" id="algChooser">{{home.choose}}</label>
   <select name="enty" id="enty" onchange="addInputs()">
     <option value="" disabled selected>None</option>
     <optgroup label="Data Transformation">

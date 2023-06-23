@@ -34,15 +34,19 @@
         <option value="hu" {% if language=="hu" %} selected {% endif %}>HU</option>
       </select>
       {% if user.is_authenticated %}
-      <a class="nav-item nav-link" href="/{{ language }}">Crypt</a>
-      <a class="nav-item nav-link" href="/learning/{{ language }}">Learning</a>
-      <a class="nav-item nav-link" id="logout" href="/logout/{{ language }}">Logout</a>
+      <a class="nav-item nav-link" href="/{{ language }}">{{base.crypt}}</a>
+      <a class="nav-item nav-link" href="/learning/{{ language }}">{{base.learning}}</a>
+      <a class="nav-item nav-link" id="logout" href="/logout/{{ language }}">{{base.logout}}</a>
       {% else %}
-      <button class="btnLogin-popup">{{ login }}</button>
+      <a class="nav-item nav-link" href="/learning/{{ language }}">{{base.learning}}</a>
+      {% block loginBtn %}
+      <a class="nav-item nav-link" href="/login/{{ language }}">{{base.login}}</a>
+      {% endblock %}
       {% endif %}
     </nav>
   </header>
 
+  <div id="containerLogin">{% block contentLogin %} {% endblock %}</div>
   <div id="container">{% block content %} {% endblock %}</div>
   <div id="containerLearn">{% block contentLearn %} {% endblock %}</div>
 

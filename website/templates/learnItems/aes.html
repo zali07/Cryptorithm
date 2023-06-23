@@ -1,110 +1,81 @@
 {% extends "learning.html" %} {% block title %}AES{% endblock %} {% block
 middleLearning%}
 <div class="p1" data-id="1">
-  <h2>AES Origin</h2>
+  <h2>{{aes.title1}}</h2>
   <p>
-    AES (Advanced Encryption Standard), also known as Rijndael, is a symmetric
-    block cipher cryptosystem, which was standardized by the NIST in 2001. The
-    system was developed by two Belgian cryptographers, Vincent Rijmen and Joan
-    Daemen, and the name Rijndael is a contraction of their names.
+    {{aes.title1_1}}
   </p>
   <p>
-    The block ciphers are schemes for encryption or decryption where a block of
-    plaintext is treated as a single block and is used to obtain a block of
-    ciphertext with the same size. Today, AES is one of the most used algorithms
-    for block encryption. The size of an AES block is 128 bits, whereas the size
-    of the encryption key can be 128, 192 or 256 bits. Please note this, there
-    is three length in the key, but the size of the encryption block always is
-    128 bits.
+    {{aes.title1_2}}
   </p>
   <p>
-    Five modes: ECB, CBC, CFB, OFB, CTR
+    {{aes.title1_3a}}
     <br />
-    In this case we are discussing the CTR (short for counter) mode. At this
-    mode of operation as an input block to the encryptor, i.e. as an IV, the
-    value of a counter (Counter, Counter + 1,…, Counter + N - 1) is used. It
-    also is a stream encryptor.
+    {{aes.title1_3b}}
   </p>
   <p>
-    Pros:
+    {{aes.title1_4a}}
     <br />
-    - No padding
+    {{aes.title1_4b}}
     <br />
-    - Supports parallel computing
+    {{aes.title1_4c}}
     <br />
-    - Encryption and decryption use the same structure
+    {{aes.title1_4d}}
     <br />
-    - Bad block only affect the current block
+    {{aes.title1_4e}}
     <br />
-    Cons:
+    {{aes.title1_4f}}
     <br />
-    - A MITM (Man in the Middle) can change some ciphertext damaged plaintext
+    {{aes.title1_4g}}
   </p>
 </div>
 <div class="p2" data-id="2">
-  <h2>AES-CTR Description</h2>
+  <h2>{{aes.title2}}</h2>
   <p>
-    A secret symmetric key is generated or provided. The AES algorithm takes
-    this key and expands it into a set of round keys that will be used in the
-    subsequent encryption process.
+    {{aes.title2_1}}
   </p>
   <p>
-    An Initialization Vector is a unique value that is required for the CTR
-    mode. The IV can be generated randomly or derived from a nonce (number used
-    once) and a counter. The IV should be unique for each encryption operation
-    to maintain security. The counter value is initialized based on the IV. The
-    counter is a unique value that is incremented for each block of plaintext or
-    ciphertext.
+    {{aes.title2_2}}
   </p>
   <p>
-    AES-CTR operates by dividing the plaintext into fixed-size blocks (e.g., 128
-    bits). For each block, the counter value is encrypted using the AES
-    algorithm and the round keys generated in the key expansion phase. This
-    encryption of the counter produces a pseudorandom keystream.
+    {{aes.title2_3}}
   </p>
   <p>
-    The pseudorandom keystream generated from the encryption step is then XORed
-    with the corresponding plaintext block. The result of the XOR operation is
-    the ciphertext block. This process is repeated for each block of plaintext,
-    generating the complete ciphertext.
+    {{aes.title2_4}}
   </p>
   <p>
-    After each encryption or decryption operation, the counter value is
-    incremented to ensure that a unique value is used for each block.
+    {{aes.title2_5a}}
     <br />
-    By using this process, AES-CTR transforms the AES block cipher into a stream
-    cipher, generating a pseudorandom keystream that is combined with the
-    plaintext or ciphertext through the XOR operation.
+    {{aes.title2_5b}}
   </p>
 </div>
 
 <div class="p3" data-id="3">
-  <h2>AES-CTR Security</h2>
+  <h2>{{aes.title3}}</h2>
   <p>
-    To ensure security, the key in this mode need to be changed for every
-    2^(n/2) encryption blocks.
+    {{aes.title3_1}}
   </p>
   <p>
-    Attack modes:
+    {{aes.title3_2a}}
     <br />
-    - PA (Padding Attack)
+    {{aes.title3_2b}}
     <br />
-    - CPA (Chose Plaintext Attack)
+    {{aes.title3_2c}}
     <br />
-    - CCA (Choosen Ci)
+    {{aes.title3_2d}}
   </p>
   <p>
-    It's commonly useid in:
+    {{aes.title3_3a}}
     <br />
-    - Network Communication
+    {{aes.title3_3b}}
     <br />
-    - Disk and File Encryption
+    {{aes.title3_3c}}
     <br />
-    - Cloud Storage
+    {{aes.title3_3d}}
     <br />
-    - Real-Time Media Encryption
+    {{aes.title3_3e}}
     <br />
-    - Wireless Security
+    {{aes.title3_3f}}
   </p>
 </div>
 <div id="footer">
@@ -116,10 +87,5 @@ middleLearning%}
   </form>
 </div>
 {% endblock %} {% block sideLearning%}
-<img
-  id="imgCTREncryption"
-  class="p3"
-  width="220%"
-  src="{{url_for('static',filename='images/ctr-encrypt.png')}}"
-/>
+<img id="imgCTREncryption" class="p3" width="220%" src="{{url_for('static',filename='images/ctr-encrypt.png')}}" />
 {% endblock %}
