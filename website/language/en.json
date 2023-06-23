@@ -4,7 +4,11 @@
     "learning": "Learning",
     "logout": "Logout",
     "login": "Login",
-    "submit": "Submit"
+    "submit": "Submit",
+    "welcomeTitle": "Welcome at Cryptorithm!",
+    "welcomeText1": "Cryptorithm is an online cryptography application that allows you to try out different cryptographic systems and increase your knowledge of cryptography. Explore the exciting world of encryption and decryption and learn how different cryptographic methods work.",
+    "welcomeText2": "Click on the \"Login\" button to create a new profile or log in to an existing one. Explore the cryptographic tools available, experiment with different algorithms, and see how data encryption and decryption are changing.",
+    "welcomeText3": "Want to know more about the world of cryptography? Visit the \"Learning\" section where you will find detailed information on the origins, operation and uses of cryptographic systems."
   },
   "cryptorithm": {
     "login": "Login",
@@ -77,7 +81,7 @@
     "title3_2b": "- PA (Padding Attack)",
     "title3_2c": "- CPA (Chose Plaintext Attack)",
     "title3_2d": "- CCA (Choosen Ci)",
-    "title3_3a": "It's commonly useid in:",
+    "title3_3a": "It's commonly used in:",
     "title3_3b": "- Network Communication",
     "title3_3c": "- Disk and File Encryption",
     "title3_3d": "- Cloud Storage",
@@ -125,6 +129,6 @@
     "title3_2d": "- To secure blockchains like Bitcoin and Ethereum",
     "title3_2e": "- In anti-viruses, to compare the fingerprints of files and programs",
     "title3_2f": "- In version control systems like Git to check if data has changed",
-    "title3_3": "After all, in SHA-256 there are 2^256 possible outputs."
+    "title3_3": "After all, in SHA-256 there are 2^256 (1.158 x 10^77) possible outputs."
   }
 }

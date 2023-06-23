@@ -4,6 +4,17 @@
   padding-top: 20px;
 }
 
+#mainTitle {
+  color: rgba(241, 196, 15, 0.9);
+}
+
+#containerLogin {
+  position: fixed;
+  width: 35%;
+  padding-top: 230px;
+  left: 2%;
+}
+
 #langSwitcher {
   width: 80px;
   display: flex;

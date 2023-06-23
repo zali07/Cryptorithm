@@ -30,13 +30,13 @@ def home(language):
                 case "CAESAR_EN":
                     paraA = request.form.get("CAESAR_EN_SHIFT")
                     ciphertext = dat.caesar_encrypt(plaintext, int(paraA))
+                case "CAESAR_DE":
+                    paraA = request.form.get("CAESAR_DE_SHIFT")
+                    ciphertext = dat.caesar_decrypt(plaintext, int(paraA))  
                 case "AFFINE_EN":
                     paraA = request.form.get("AFFINE_EN_A")
                     paraB = request.form.get("AFFINE_EN_B")
-                    ciphertext = dat.affine_encrypt(plaintext, int(paraA), int(paraB))
-                case "CAESAR_DE":
-                    paraA = request.form.get("CAESAR_DE_SHIFT")
-                    ciphertext = dat.caesar_decrypt(plaintext, int(paraA))                
+                    ciphertext = dat.affine_encrypt(plaintext, int(paraA), int(paraB))     
                 case "AFFINE_DE":
                     paraA = request.form.get("AFFINE_DE_A")
                     paraB = request.form.get("AFFINE_DE_B")
@@ -54,28 +54,36 @@ def home(language):
                     ciphertext, paraA, paraB = bcm.AES_CTR_EN(plaintext, password, 128)
                 case "AES-128_CTR_DE":
                     paraA = request.form.get("AES-128-CTR_KEY")
-                    paraA = base64.b64decode(paraA)
-                    if len(paraA) != 16:
-                        flash('Key length must be 16-bytes!', category='error')
+                    try:
+                        paraA = base64.b64decode(paraA)
+                        if len(paraA) != 16:
+                            flash('Key length must be 16-bytes!', category='error')
+                            return render_template("home.html", user=current_user, language=language, **languages[language])
+                    except:
+                        flash('Wrong key format!', category='error')
                         return render_template("home.html", user=current_user, language=language, **languages[language])
                     paraB = request.form.get("AES-128-CTR_NONCE")
                     ciphertext = bcm.AES_CTR_DE(plaintext, paraA, paraB)
                     if ciphertext == None:
-                        flash('Invalid credentials!', category='error')
+                        flash('Wrong credentials, can\'t decode message!', category='error')
                         return render_template("home.html", user=current_user, language=language, **languages[language])
                 case "AES-256_CTR_EN":
                     password = request.form.get("AES-256-CTR_PASS")
                     ciphertext, paraA, paraB = bcm.AES_CTR_EN(plaintext, password, 256)
                 case "AES-256_CTR_DE":
                     paraA = request.form.get("AES-256-CTR_KEY")
-                    paraA = base64.b64decode(paraA)
-                    if len(paraA) != 32:
-                        flash('Key length must be 32-bytes!', category='error')
+                    try:
+                        paraA = base64.b64decode(paraA)
+                        if len(paraA) != 32:
+                            flash('Key length must be 32-bytes!', category='error')
+                            return render_template("home.html", user=current_user, language=language, **languages[language])
+                    except:
+                        flash('Wrong key format!', category='error')
                         return render_template("home.html", user=current_user, language=language, **languages[language])
                     paraB = request.form.get("AES-256-CTR_NONCE")
                     ciphertext = bcm.AES_CTR_DE(plaintext, paraA, paraB)
                     if ciphertext == None:
-                        flash('Invalid credentials!', category='error')
+                        flash('Wrong credentials, can\'t decode message!', category='error')
                         return render_template("home.html", user=current_user, language=language, **languages[language])
             new_data = Data(data=ciphertext, cryptype=selecter, paramA=paraA, paramB=paraB, user_id=current_user.id)
             db.session.add(new_data)
