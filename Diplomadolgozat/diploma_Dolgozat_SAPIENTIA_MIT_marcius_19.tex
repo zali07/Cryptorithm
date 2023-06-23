@@ -1,0 +1,107 @@
+\documentclass[12pt,a4paper,oneside]{report}             % Single-side
+
+
+\input{content/packages}
+\onehalfspacing % Add this command to set the line spacing to 1.5
+%--------------------------------------------------------------------------------------
+% Language configuration -- choose one
+%--------------------------------------------------------------------------------------
+\input{content/thesis-hu}  % Beállítások magyar nyelvű dolgozathoz
+
+%--------------------------------------------------------------------------------------
+% Main variables
+%--------------------------------------------------------------------------------------
+
+
+
+% Szak alapkepzes
+\newcommand{\szakHU}{INFORMATIKA SZAK}
+\newcommand{\szakRO}{SPECIALIZAREA INFORMATIC\v A}
+\newcommand{\szakEN}{COMPUTER SCIENCE SPECIALIZATION}
+
+
+\newcommand{\dolgozattipusHU}{DIPLOMADOLGOZAT}
+\newcommand{\dolgozattipusRO}{LUCRARE DE DIPLOM\v A}
+\newcommand{\dolgozattipusEN}{BACHELOR THESIS}
+
+\newcommand{\szerzo}{Füzi Zalán} % Szerző neve
+\newcommand{\temavezetoA}{Dr. Márton Gyöngyvér} % Vezetőtanár neve
+
+
+% Fokozatok
+
+%Egyetemi tan\'ar/ Profesor universitar/Full Professor
+%Egyetemi docens/ Conferențiar universitar/Associate professor
+%Egyetemi adjunktus/Lector universitar sau Șef de lucrări /Lecturer
+%Egyetemi tan\'arseg\'ed/Asistent universitar/Assistant professor
+
+
+\newcommand{\temavezetoAfokozat}{Egyetemi tanár}% Első konzulens neve
+\newcommand{\temavezetoAfokozatRo}{Profesor universitar}
+\newcommand{\temavezetoAfokozatEn}{Full Professor}
+\newcommand{\temavezetoB}{} % Második konzulens neve
+\newcommand{\cimHu}{Cryptorithm} % Cím
+\newcommand{\cimRO}{Cryptorithm}
+\newcommand{\cimEN}{Cryptorithm}
+\newcommand{\ev}{2023} %az aktualis ev
+
+\input{content/preamble.tex}
+
+
+
+
+%--------------------------------------------------------------------------------------
+% Table of contents and the main text
+%--------------------------------------------------------------------------------------
+\begin{document}
+	
+% CIMOLDALAK
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\include{content/titlepage}
+	\include{content/titlepage-ro}
+	\include{content/titlepage-en}
+	
+	\includepdf[pages={1}]{content/Declaratie.pdf}
+	\include{abstract}
+ 
+% Tartalomjegyzek
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\pagenumbering{arabic}
+	\setcounter{page}{8}
+	\tableofcontents\vfill
+
+% A diplomadolgozat lenyegi resze
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	\include{bevezeto}
+	\include{fejezet2}
+	\include{fejezet3}
+	\include{fejezet4}
+	\include{fejezet5}
+	\include{fejezet6}
+	\include{fejezet7}
+	\include{osszefoglalo}
+
+% Koszonetnyilvanitas
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\include{acknowledgement}
+
+
+% Tablazatok es abrak jegyzeke (EZ NEM KOTELEZO)
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\listoffigures\addcontentsline{toc}{chapter}{\abrakjegyzeke}
+	\listoftables\addcontentsline{toc}{chapter}{\tablazatokjegyzeke}
+
+
+% Bibliography
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\bibliography{mybib}
+	\addcontentsline{toc}{chapter}{\irodalomjegyzek}
+	\bibliographystyle{alpha}
+	
+% Appendix
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	\include{appendices}
+
+\label{page:last}
+\end{document}

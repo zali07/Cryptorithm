@@ -1,0 +1,34 @@
+%----------------------------------------------------------------------------
+\chapter{Kriptográfiai alapok és rendszerek}
+%----------------------------------------------------------------------------
+
+
+\section{Kriptográfiai alapfogalmak}
+A Cryptorithm rendszer használata során néhány alapvető kriptográfiai fogalom ismerete előnyös lehet. Az alábbiakban néhány ilyen fogalmat tisztázok, amelyek segíthetnek a rendszer hatékony használatában.
+\subsection{Titkosítás}
+A titkosítás olyan folyamat, amely során az eredeti üzenetet (nyílt szöveget) átalakítjuk egy titkosított formává, hogy csak a jogosultak tudják elolvasni. Az alkalmazásban található kriptográfiai rendszerek segítségével a felhasználók titkosíthatnak és visszafejthetnek üzeneteket.
+
+\subsection{Hash függvények}
+A hash-függvények olyan matematikai algoritmusok, amelyek egy tetszőleges hosszúságú bemenetet (pl. üzenetet) átalakítanak egy fix hosszúságú, látszólag véletlenszerű kimenetbe. Az alkalmazás SHA hashelésének megértése segít a felhasználóknak az adatok hitelességének ellenőrzésében.
+
+\subsection{Titkosítási módok}
+A titkosítási módok meghatározzák, hogy a titkosítás hogyan történik az üzenetek blokkjainak kezelése során. Az AES titkosító CTR módban való használata azt jelenti, hogy az üzenetek blokkonkénti titkosítása történik, amely nagyobb szabadságot ad a felhasználóknak az adatok kezelésében.
+
+\subsection{Rejtjelezések}
+Az Affin és Caesar rejtjelezések olyan egyszerű eltolásos módszerek, amelyeket a szövegek titkosítására használnak. A rendszerben ezek a rejtjelezések lehetővé teszik a felhasználók számára, hogy megértsék az ilyen egyszerű rejtjelezési módszerek működését és alkalmazását.
+
+
+\section {Caesar rejtjelezés}
+A Caesar rejtjelezés egy egyszerű eltolási titkosítási módszer, amelyben az összes betűt egy adott számmal, a kulcsként használt eltolással helyettesítik. Például, ha a kulcs 3, akkor az "A" betűt a "D" betűre cserélik, a "B" betűt az "E" betűre stb. A Caesar rejtjelezés könnyen feltörhető, mivel csak 26 lehetséges eltolási kulcs létezik, amelyeket egyszerűen végig lehet próbálni.
+
+\section {Affin rejtjelezés}
+Az Affin rejtjelezés egy egyszerű szubsztitúciós rejtjelezési módszer, amely a Caesar rejtjelezésre épül. Az Affin rejtjelezés egy lineáris transzformációt alkalmaz a betűkön, amely egy egyenlet alapján helyezi át azokat. Az Affin rejtjelezés a kulcsként használt két paraméter segítségével végez transzformációt az üzeneten. Az Affin rejtjelezés gyenge pontja, hogy az egyszerű frekvenciaanalízis módszerekkel feltörhető lehet, különösen kis méretű kulcsok esetén.
+
+\vspace{10pt}
+Fontos megjegyezni, hogy az Affin és Caesar rejtjelezések gyakorlati alkalmazásban már nem számítanak biztonságosnak, mivel könnyen feltörhetők. Az SHA és AES viszont biztonságos kriptográfiai algoritmusok, amelyek széles körben használatosak a valós világban.
+
+\section {SHA (Secure Hash Algorithm)}
+ Az SHA egy hash függvény család, amelyeket a digitális adatok integritásának ellenőrzésére és az adatok egyedi azonosítására használnak. Az SHA hash függvények, például az SHA-1, SHA-256 stb., egy adott bemeneti üzenetet átalakítanak egy fix hosszú hash kóddá. Az SHA algoritmusok irreverzibilisek, vagyis a hash értékből nem lehet visszaállítani az eredeti üzenetet. Ez a tulajdonságuk hasznos a jelszavak, digitális aláírások és az üzenetek integritásának védelmében.
+
+\section {AES (Advanced Encryption Standard)}
+ Az AES egy szimmetrikus blokk titkosítási algoritmus, amelyet a biztonságos adatátvitel és tárolás céljából használnak. Az AES algoritmus blokkokat titkosít a bemeneti üzenetből, és ezeket a titkosított blokkokat kombinálja a kimeneti titkosított üzenet létrehozásához. Az AES-t az Egyesült Államok Kormánya ajánlja a kormányzati és ipari alkalmazásokban. Az AES több különböző kulcsmérettel (128, 192, 256 bites) és különböző üzemmódokkal (pl. CTR, CBC, ECB) használható.
