@@ -47,7 +47,7 @@
 #msg {
   -webkit-animation: cssAnimation 3s forwards;
   animation: cssAnimation 3s forwards;
-  left: -30%;
+  left: -10%;
 }
 
 #data {

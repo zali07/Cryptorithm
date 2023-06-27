@@ -8,27 +8,50 @@ A Cryptorithm rendszer használata során néhány alapvető kriptográfiai foga
 \subsection{Titkosítás}
 A titkosítás olyan folyamat, amely során az eredeti üzenetet (nyílt szöveget) átalakítjuk egy titkosított formává, hogy csak a jogosultak tudják elolvasni. Az alkalmazásban található kriptográfiai rendszerek segítségével a felhasználók titkosíthatnak és visszafejthetnek üzeneteket.
 
-\subsection{Hash függvények}
-A hash-függvények olyan matematikai algoritmusok, amelyek egy tetszőleges hosszúságú bemenetet (pl. üzenetet) átalakítanak egy fix hosszúságú, látszólag véletlenszerű kimenetbe. Az alkalmazás SHA hashelésének megértése segít a felhasználóknak az adatok hitelességének ellenőrzésében.
+\subsection{Kulcs}
+A kulcs a kriptográfiában egy olyan titkosítási vagy visszafejtési folyamat során használt információdarab, amely alapvetően befolyásolja a kriptográfiai algoritmus működését és a végeredményt. Biztosítják az adatok biztonságát és védelmet nyújtanak a jogosulatlan hozzáférésekkel szemben. Ugyanakkor fontos megjegyezni, hogy az erős és biztonságos kulcs kiválasztása és ennek tárolása, kezelés elengedhetetlen a megfelelő kriptográfiai rendszerek kialakításában.
 
+\newpage
 \subsection{Titkosítási módok}
-A titkosítási módok meghatározzák, hogy a titkosítás hogyan történik az üzenetek blokkjainak kezelése során. Az AES titkosító CTR módban való használata azt jelenti, hogy az üzenetek blokkonkénti titkosítása történik, amely nagyobb szabadságot ad a felhasználóknak az adatok kezelésében.
+A titkosítási módok meghatározzák, hogy a titkosítás hogyan történik az üzenetek blokkjainak kezelése során. A gyakran használt titkosításí üzemmódok a következőek: ECB(Electronic Codebook), CBC(Ciper Block Chaining), CFB(Cipher Feedback), OFB(Output Feedback) és a CTR(Counter).
+A felsorolt üzemmódok mellett számos más speciális üzemmód létezik, amelyek különböző funkciókkat és jellemzőket kínálnak. A megfelelő kiválasztása és alkalmazása az adott kriptográfiai algoritmustól függ.
+
+A Cryptorithm esetében az AES blokk titkosító CTR üzemmódban próbálható ki, ami azt jelenti, hogy a blokkok titkosítása egy folyamatosan növekvő számláló alapján történik. A számláló értékét XOR-olják az adatblokkal a blokk titkosítása előtt. Ez a módszer párhuzamosításra alkalmas, mivel a blokkok függetlenül titkosíthatóak.
 
 \subsection{Rejtjelezések}
-Az Affin és Caesar rejtjelezések olyan egyszerű eltolásos módszerek, amelyeket a szövegek titkosítására használnak. A rendszerben ezek a rejtjelezések lehetővé teszik a felhasználók számára, hogy megértsék az ilyen egyszerű rejtjelezési módszerek működését és alkalmazását.
+A dolgozatomban 3 fajta rejtjelezést, avagy tikosítást különböztetek meg: blokktikosítás, folyamtitkosítás és hash fügvények.
 
+A blokktitkosítók a bemeneti adatot blokkokra osztják, majd ezeket a blokkokat titkosítják. A blokkok mérete álltalában azonos, és ugyanazt a titkosítási kulcsot és algoritmust használják. Ilyen titkosító például az AES és a Blowfish. Előnyei a hatékonyság, mivel a blokkok egyszerre titkosíthatóak és dekódolhatóak, továbbá hibajavítási képessége, mert egy hibás blokk nem terjed át a többi blokkra.
 
-\section {Caesar rejtjelezés}
-A Caesar rejtjelezés egy egyszerű eltolási titkosítási módszer, amelyben az összes betűt egy adott számmal, a kulcsként használt eltolással helyettesítik. Például, ha a kulcs 3, akkor az "A" betűt a "D" betűre cserélik, a "B" betűt az "E" betűre stb. A Caesar rejtjelezés könnyen feltörhető, mivel csak 26 lehetséges eltolási kulcs létezik, amelyeket egyszerűen végig lehet próbálni.
+A folyamtitkosítók bitenként vagy bitek kis csoportjaival dolgozik, és a titkosítás során egy folyamot generál. A folyamtitkosítás az adatokat a generált folyammal kombinálja. Előnyei közé tartozik a sebesség és az adatfolyam feldolgozásának hatékonysága, mivel az adatokat bitek szintjén lehet titkosítani és dekódolni. Emellett a folyamtitkosítás ellenállóbb lehet a blokktitkosítással szembeni kriptoanalitikai támadásokkal szemben, mivel nem állít elő azonos bemenetekhez azonos kimeneteket. Ilyen titkosítót például a ChaCha20, Caesar és Affin.
 
-\section {Affin rejtjelezés}
+A hash-függvények olyan matematikai algoritmusok, amelyek egy tetszőleges hosszúságú bemenetet (pl. üzenetet) átalakítanak egy fix hosszúságú, látszólag véletlenszerű kimenetbe. A hashelés segít a felhasználóknak az adatok hitelességének ellenőrzésében. Továbbá erejük és megbízhatóságuk abban rejlik, hogy irreverzibilisek, nem lehet visszaállítani a hash értékéből a bemeneti adatot eredeti formájában és ugyanakkor ütközmentesek, vagyis nagyon alacsony valószínűséggel található két különböző bemenet, amelyek ugyanahhoz a hash értékhez vezetnek. Ilyen függvény például az SHA és a Whirlpool.
+
+\pagebreak
+\section{Kriptográfia rendszerek}
+A következőkben megemlítem azokat a krpitográfiai módszereket amelyek elérhetőek a Cryptorithm alkalmazásban.
+
+\subsection {Caesar rejtjelezés}
+A Caesar rejtjelezés Julius Caesarról, az ókori római katonai és politikai vezetőről kapta a nevét, aki a feltételezések szerint ezt a titkosítási technikát használta. Egy egyszerű eltolásos titkosítási módszer, amelyben az összes betűt egy adott számmal, a kulcsként használt eltolással helyettesítik. Például, ha a kulcs 3, akkor az "A" betűt a "D" betűre cserélik, a "B" betűt az "E" betűre stb. A Caesar rejtjelezés könnyen feltörhető, mivel csak 26 lehetséges eltolási kulcs létezik, amelyeket egyszerűen végig lehet próbálni.
+
+\subsection {Affin rejtjelezés}
 Az Affin rejtjelezés egy egyszerű szubsztitúciós rejtjelezési módszer, amely a Caesar rejtjelezésre épül. Az Affin rejtjelezés egy lineáris transzformációt alkalmaz a betűkön, amely egy egyenlet alapján helyezi át azokat. Az Affin rejtjelezés a kulcsként használt két paraméter segítségével végez transzformációt az üzeneten. Az Affin rejtjelezés gyenge pontja, hogy az egyszerű frekvenciaanalízis módszerekkel feltörhető lehet, különösen kis méretű kulcsok esetén.
 
 \vspace{10pt}
-Fontos megjegyezni, hogy az Affin és Caesar rejtjelezések gyakorlati alkalmazásban már nem számítanak biztonságosnak, mivel könnyen feltörhetők. Az SHA és AES viszont biztonságos kriptográfiai algoritmusok, amelyek széles körben használatosak a valós világban.
+Fontos megjegyezni, hogy az Affin és Caesar rejtjelezések gyakorlati alkalmazásban már nem számítanak biztonságosnak, mivel könnyen feltörhetők.
 
-\section {SHA (Secure Hash Algorithm)}
+\subsection {ChaCha20}
+A ChaCha20 elsősorban szimmetrikus titkosítási algoritmusként és folyamtitkosítóként használatos. Gyakran alkalmazzák hálózati protokollokban, biztonságos kommunikációban és nagy teljesítményű titkosítást igénylő alkalmazásokban. A ChaCha20 a sebességéről és biztonságáról ismert, és a régebbi titkosítók, például az RC4 alternatívájaként vált népszerűvé.
+
+\newpage
+\subsection {SHA (Secure Hash Algorithm)}
  Az SHA egy hash függvény család, amelyeket a digitális adatok integritásának ellenőrzésére és az adatok egyedi azonosítására használnak. Az SHA hash függvények, például az SHA-1, SHA-256 stb., egy adott bemeneti üzenetet átalakítanak egy fix hosszú hash kóddá. Az SHA algoritmusok irreverzibilisek, vagyis a hash értékből nem lehet visszaállítani az eredeti üzenetet. Ez a tulajdonságuk hasznos a jelszavak, digitális aláírások és az üzenetek integritásának védelmében.
 
-\section {AES (Advanced Encryption Standard)}
- Az AES egy szimmetrikus blokk titkosítási algoritmus, amelyet a biztonságos adatátvitel és tárolás céljából használnak. Az AES algoritmus blokkokat titkosít a bemeneti üzenetből, és ezeket a titkosított blokkokat kombinálja a kimeneti titkosított üzenet létrehozásához. Az AES-t az Egyesült Államok Kormánya ajánlja a kormányzati és ipari alkalmazásokban. Az AES több különböző kulcsmérettel (128, 192, 256 bites) és különböző üzemmódokkal (pl. CTR, CBC, ECB) használható.
+\subsection {Whirlpool}
+A Whirlpool egy hash-függvény, amelyet általában adatintegritás-ellenőrzésre és digitális aláírásra használnak. Fix méretű, jellemzően 512 bit hosszú hash-értéket állít elő. A Whirlpoolt különböző biztonsági alkalmazásokban használják, például a fájlok integritásának ellenőrzésére, jelszavak tárolására és üzenethitelesítésre.
+
+\subsection {AES (Advanced Encryption Standard)}
+ Az AES egy szimmetrikus blokktitkosítási algoritmus, amelyet a biztonságos adatátvitel és tárolás céljából használnak. Az AES algoritmus blokkokat titkosít a bemeneti üzenetből, és ezek a titkosított blokkok kombinálódnak a kimeneti titkosított üzenet létrehozásához. Az AES-t az Egyesült Államok Kormánya ajánlja a kormányzati és ipari alkalmazásokban. Az AES több különböző kulcsmérettel (128, 192, 256 bites) és különböző üzemmódokkal (pl. CTR, CBC, ECB) használható.
+
+\subsection {Blowfish}
+A Blowfish egy szimmetrikus kulcsú blokktitkosító, amely 64 bites blokkokkal dolgozik, és változó kulcsméreteket támogat (32 bittől 448 bitig). Gyakran használják olyan alkalmazásokban, amelyek érzékeny adatok titkosítását és visszafejtését igénylik. A Blowfish-t széles körben alkalmazzák protokollokban, szoftverekben és hardveres rendszerekben a titkosság és az adatvédelem biztosítása érdekében.

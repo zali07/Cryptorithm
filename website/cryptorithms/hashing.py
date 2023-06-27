@@ -1,8 +1,6 @@
 import hashlib
+import whirlpool
 
-data = b"Hello, World!"  # Data to be hashed
-
-#HASH
 def hash_SHA(plaintext, SHAType):
     data = plaintext.encode("utf-8")
     match SHAType:
@@ -16,4 +14,9 @@ def hash_SHA(plaintext, SHAType):
             hash = hashlib.sha512(data).hexdigest()
         case other:
             hash = -1
+    return hash
+
+def whirlpool_hash(plaintext):
+    plaintext = plaintext.encode("utf-8")
+    hash = whirlpool.new(plaintext).hexdigest()
     return hash

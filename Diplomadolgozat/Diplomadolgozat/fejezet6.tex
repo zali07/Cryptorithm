@@ -1,17 +1,43 @@
 %----------------------------------------------------------------------------
-\chapter{Továbbfejlesztési lehetőségek}
+\chapter{Felhasználói dokumentáció}
 %----------------------------------------------------------------------------
 
+\section{Kezdőoldal}
+Az oldal látogatóit egy üdvözlőszöveg köszönti, amely röviden összefoglalja a felhasználó lehetőségeit az oldalon.
+Amennyiben nem szeretne a felhasználó egy új profilt létrehozni, vagy bejelentkezni, akkor lehetősége van elnavigálni a tanulói felületre, ahol szabadon böngészheti a jelen levő kriptográfiai rendszereket.
+Viszont, ha a felhasználó él a bejelentkezés lehetőségével, akkor hozzáférése lesz a műveletek elvégzéséért felelős felülethez is.
+Továbbá minden oldalon jelen van, egy nyelv választó, mely lehetőséget ad, hogy a felhasználó más nyelven is böngészhessen a platformon (\ref{fig:langSelector}).
 
-\textbf{Bővített kriptográfiai rendszerek:} Az alkalmazásba további kriptográfiai rendszerek, mint például Salsa20, ElGamal vagy ECC (Elliptic Curve Cryptography) integrálása lehetőséget adna a felhasználóknak a különböző algoritmusok kipróbálására és tanulására.
 
-\textbf{Interaktív gyakorló feladatok:} Interaktív gyakorló feladatok készítése, amelyek segítségével a felhasználók a tanulói felületen gyakorolhatják a különböző kriptográfiai rendszerek alkalmazását. Ez javítaná a gyakorlati tapasztalatok szerzését és a tanulás hatékonyságát.
+\section{Tanulói felület}
+A tanulói felület bal oldalán egy menün keresztül lehet navigálni a módszerek között, a kiválasztás után megjelenik 2 (vissza, következő) gomb amely segít az adott rendszerhez tartozó tartalom navigálásásában.
+Ha a felhasználó úgy dönt, hogy még is hozzáférést szeretne az oldal többi funkciójához akkor ezt a belépés fülre kattintva, egy gyors bejelentkezés vagy új profil létrehozása után megkapja.
 
-\textbf{Felhasználói profilok és eredmények nyomon követése:} Egy felhasználói profil rendszer létrehozása, ahol a felhasználók modosíthatják adataikat és nyomon követhetik a teljesítményt, például az elért eredményeket vagy az elvégzett feladatokat. Ez segít a felhasználóknak a fejlődésük nyomon követésében és motivációjuk fokozásában.
 
-\textbf{További nyelvi támogatás:} Az alkalmazást további nyelvek támogatásával való kibővítése, hogy a nem angol vagy magyar anyanyelvű felhasználók is könnyen használhassák és megértsék a rendszert. Ez növelné a felhasználói kört és a felhasználói elégedettséget.
 
-\textbf{Reszponzív dizájn:} Az alkalamzás biztosítása a különböző eszközökön történő használathoz.
+\section{Crypt felület}
+A Crypt felületen lehet kipróbálni a rendszerbe beépített kriptográfiai műveleteket, ehhez rendelkezésre áll egy kiválasztó, ahol jelen vannak az elérhető lehetőségek. A választás után megjelenhet bizonyos számú beviteli mező, ezek a kiválasztott művelet bemeneti paramétereit várják (\ref{fig:aesDeOpt}).
+Egy művelet sikeres elvégzése után az előzmények táblában megjelenik az eredmény, ezt megelőzően pedig a felhasználó által végrehajtott műveletek előzményei (\ref{fig:cryptBase}).
 
-\vspace{10pt}
-Ezek a továbbfejlesztési lehetőségek hozzájárulhatnak az alkalmazás funkcionalitásának és felhasználói élményének javításához, valamint a felhasználók kriptográfiai ismereteinek bővítéséhez.
+
+\newpage
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=1]{images/langSelector}
+	\caption{Nyelv választó}
+	\label{fig:langSelector}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{images/aesDeOptions}
+	\caption{Példa beviteli mezőre - AES-128 CTR DE}
+	\label{fig:aesDeOpt}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.45]{images/cryptBase}
+	\caption{Crypt felület}
+	\label{fig:cryptBase}
+\end{figure}

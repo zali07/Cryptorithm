@@ -81,6 +81,16 @@ function addInputs() {
       createLabelElement("nonce:");
       createInputElementText("AES-256-CTR_NONCE");
       break;
+    case "CHACHA20_DE":
+      createLabelElement("key:");
+      createInputElementText("CHACHA20_KEY");
+      createLabelElement("nonce:");
+      createInputElementText("CHACHA20_NONCE");
+      break;
+    case "BLOWFISH_DE":
+      createLabelElement("key:");
+      createInputElementText("BLOWFISH_KEY");
+      break;
     default:
       break;
   }

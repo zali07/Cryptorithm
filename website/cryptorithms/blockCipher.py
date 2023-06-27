@@ -1,10 +1,11 @@
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives import padding
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
+from Crypto.Cipher import Blowfish
 from os import urandom
 import base64
+from struct import pack
 
 
 def AES_CTR_EN(plaintext, password, AESType): #AESType 128 or 256
@@ -40,5 +41,30 @@ def AES_CTR_DE(ciphertext, key, nonce):
         decryptor = cipher.decryptor()
         decrypted_text = decryptor.update(ciphertext) + decryptor.finalize()
         return decrypted_text.decode("utf-8")
+    except:
+        return None
+    
+def blowfish_EN(plaintext):
+    data = plaintext.encode("utf-8")
+    bs = Blowfish.block_size
+    key = urandom(16)
+    cipher = Blowfish.new(key, Blowfish.MODE_CBC)
+    plen = bs - len(data) % bs
+    padding = [plen]*plen
+    padding = pack('b'*plen, *padding)
+    msg = cipher.iv + cipher.encrypt(data + padding)
+    return msg.hex(), key.hex()
+
+
+def blowfish_DE(ciphertext, key):
+    try:
+        ciphertext = bytes.fromhex(ciphertext)
+        key = bytes.fromhex(key)
+        bs = Blowfish.block_size
+        cipher = Blowfish.new(key, Blowfish.MODE_CBC, ciphertext[:bs])
+        plaintext = cipher.decrypt(ciphertext[bs:])
+        padding_len = plaintext[-1]
+        plaintext = plaintext[:-padding_len].decode('utf-8')
+        return plaintext
     except:
         return None

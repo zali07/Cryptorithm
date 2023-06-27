@@ -4,9 +4,9 @@ from .models import Data
 from . import db
 import json
 import base64
-from .cryptorithms import dataTransformation as dat
+from .cryptorithms import streamCipher as stc
 from .cryptorithms import hashing as has
-from .cryptorithms import blockCipherMode as bcm
+from .cryptorithms import blockCipher as bcc
 from . import app_language, languages
 
 
@@ -29,18 +29,18 @@ def home(language):
             match selecter:
                 case "CAESAR_EN":
                     paraA = request.form.get("CAESAR_EN_SHIFT")
-                    ciphertext = dat.caesar_encrypt(plaintext, int(paraA))
+                    ciphertext = stc.caesar_encrypt(plaintext, int(paraA))
                 case "CAESAR_DE":
                     paraA = request.form.get("CAESAR_DE_SHIFT")
-                    ciphertext = dat.caesar_decrypt(plaintext, int(paraA))  
+                    ciphertext = stc.caesar_decrypt(plaintext, int(paraA))  
                 case "AFFINE_EN":
                     paraA = request.form.get("AFFINE_EN_A")
                     paraB = request.form.get("AFFINE_EN_B")
-                    ciphertext = dat.affine_encrypt(plaintext, int(paraA), int(paraB))     
+                    ciphertext = stc.affine_encrypt(plaintext, int(paraA), int(paraB))     
                 case "AFFINE_DE":
                     paraA = request.form.get("AFFINE_DE_A")
                     paraB = request.form.get("AFFINE_DE_B")
-                    ciphertext = dat.affine_decrypt(plaintext, int(paraA), int(paraB))
+                    ciphertext = stc.affine_decrypt(plaintext, int(paraA), int(paraB))
                 case "SHA-1":
                     ciphertext = has.hash_SHA(plaintext, 1)
                 case "SHA-256":
@@ -49,9 +49,22 @@ def home(language):
                     ciphertext = has.hash_SHA(plaintext, 384)
                 case "SHA-512":
                     ciphertext = has.hash_SHA(plaintext, 512)
+                case "WHIRLPOOL":
+                    ciphertext = has.whirlpool_hash(plaintext)
+                case "CHACHA20_EN":
+                    ciphertext, paraA, paraB = stc.chacha20_EN(plaintext)
+                case "CHACHA20_DE":
+                    paraA = request.form.get("CHACHA20_KEY")
+                    paraB = request.form.get("CHACHA20_NONCE")
+                    ciphertext = stc.chacha20_DE(plaintext, paraA, paraB)
+                case "BLOWFISH_EN":
+                    ciphertext, paraA = bcc.blowfish_EN(plaintext)
+                case "BLOWFISH_DE":
+                    paraA = request.form.get("BLOWFISH_KEY")
+                    ciphertext = bcc.blowfish_DE(plaintext, paraA)
                 case "AES-128_CTR_EN":
                     password = request.form.get("AES-128-CTR_PASS")
-                    ciphertext, paraA, paraB = bcm.AES_CTR_EN(plaintext, password, 128)
+                    ciphertext, paraA, paraB = bcc.AES_CTR_EN(plaintext, password, 128)
                 case "AES-128_CTR_DE":
                     paraA = request.form.get("AES-128-CTR_KEY")
                     try:
@@ -63,13 +76,10 @@ def home(language):
                         flash('Wrong key format!', category='error')
                         return render_template("home.html", user=current_user, language=language, **languages[language])
                     paraB = request.form.get("AES-128-CTR_NONCE")
-                    ciphertext = bcm.AES_CTR_DE(plaintext, paraA, paraB)
-                    if ciphertext == None:
-                        flash('Wrong credentials, can\'t decode message!', category='error')
-                        return render_template("home.html", user=current_user, language=language, **languages[language])
+                    ciphertext = bcc.AES_CTR_DE(plaintext, paraA, paraB)
                 case "AES-256_CTR_EN":
                     password = request.form.get("AES-256-CTR_PASS")
-                    ciphertext, paraA, paraB = bcm.AES_CTR_EN(plaintext, password, 256)
+                    ciphertext, paraA, paraB = bcc.AES_CTR_EN(plaintext, password, 256)
                 case "AES-256_CTR_DE":
                     paraA = request.form.get("AES-256-CTR_KEY")
                     try:
@@ -81,10 +91,10 @@ def home(language):
                         flash('Wrong key format!', category='error')
                         return render_template("home.html", user=current_user, language=language, **languages[language])
                     paraB = request.form.get("AES-256-CTR_NONCE")
-                    ciphertext = bcm.AES_CTR_DE(plaintext, paraA, paraB)
-                    if ciphertext == None:
-                        flash('Wrong credentials, can\'t decode message!', category='error')
-                        return render_template("home.html", user=current_user, language=language, **languages[language])
+                    ciphertext = bcc.AES_CTR_DE(plaintext, paraA, paraB)
+            if ciphertext == None:
+                flash('Wrong credentials, can\'t decode message!', category='error')
+                return render_template("home.html", user=current_user, language=language, **languages[language])
             new_data = Data(data=ciphertext, cryptype=selecter, paramA=paraA, paramB=paraB, user_id=current_user.id)
             db.session.add(new_data)
             db.session.commit()
@@ -126,6 +136,24 @@ def aes(language):
     if(language not in languages):
         language = app_language
     return render_template("/learnItems/aes.html", user=current_user, language=language, **languages[language])
+
+@views.route('/learning/blowfish/<language>', methods=['GET', 'POST'])
+def blowfish(language):
+    if(language not in languages):
+        language = app_language
+    return render_template("/learnItems/blowfish.html", user=current_user, language=language, **languages[language])
+
+@views.route('/learning/chacha/<language>', methods=['GET', 'POST'])
+def chacha(language):
+    if(language not in languages):
+        language = app_language
+    return render_template("/learnItems/chacha.html", user=current_user, language=language, **languages[language])
+
+@views.route('/learning/whirlpool/<language>', methods=['GET', 'POST'])
+def whirlpool(language):
+    if(language not in languages):
+        language = app_language
+    return render_template("/learnItems/whirlpool.html", user=current_user, language=language, **languages[language])
 
 @views.route('/delete-data', methods=['POST'])
 @login_required

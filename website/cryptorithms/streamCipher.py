@@ -1,13 +1,13 @@
 import random
 import string
 from math import gcd
+from Crypto.Cipher import ChaCha20
+from base64 import b64encode
+from os import urandom
+import base64
 
-#DATATRANSFORMATION
-# caesar
+
 def caesar_encrypt(plaintext, shift):
-    """
-    Encrypts the given plaintext using Caesar cipher with the given shift.
-    """
     ciphertext = ""
     for char in plaintext:
         if char.isalpha():
@@ -18,12 +18,7 @@ def caesar_encrypt(plaintext, shift):
     return ciphertext
 
 def caesar_decrypt(ciphertext, shift=None):
-    """
-    Decrypts the given ciphertext using Caesar cipher with the given shift, or
-    tries to decrypt using the 26 letter alphabets frequency table if shift is None.
-    """
     if shift is None:
-        # Frequency table of 26 letter alphabets in English language
         freq_table = ['e', 't', 'a', 'o', 'i', 'n', 's', 'r', 'h', 'l', 'd', 'c', 'u', 'm', 'f', 'p', 'g', 'w', 'y', 'b', 'v', 'k', 'x', 'j', 'q', 'z']
         for i in range(26):
             possible_plaintext = ""
@@ -33,15 +28,12 @@ def caesar_decrypt(ciphertext, shift=None):
                     possible_plaintext += shifted_char.upper() if char.isupper() else shifted_char
                 else:
                     possible_plaintext += char
-            # Calculate the frequency of each letter in the possible plaintext
             letter_freq = {}
             for char in string.ascii_lowercase:
                 letter_freq[char] = possible_plaintext.lower().count(char)
-            # Check if the letter frequency matches the expected frequency table
             sorted_freq_table = sorted(freq_table, key=lambda x: letter_freq[x], reverse=True)
             if sorted_freq_table == freq_table:
                 return possible_plaintext
-        # If none of the shifts matched the frequency table, return None
         return None
     else:
         plaintext = ""
@@ -53,11 +45,7 @@ def caesar_decrypt(ciphertext, shift=None):
                 plaintext += char
         return plaintext
 
-# affin
 def affine_encrypt(plaintext, a, b):
-    """
-    Encrypts the given plaintext using Affine cipher with the given coefficients a and b.
-    """
     ciphertext = ""
     for char in plaintext:
         if char.isalpha():
@@ -68,17 +56,11 @@ def affine_encrypt(plaintext, a, b):
     return ciphertext
 
 def generate_affine_key():
-    """
-    Generates a random Affine cipher key (a, b).
-    """
     a = random.choice([1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25])
     b = random.randint(0, 25)
     return a, b
 
 def affine_decrypt(ciphertext, a, b):
-    """
-    Decrypts the given ciphertext using Affine cipher with the given coefficients a and b.
-    """
     plaintext = ""
     a_inverse = mod_inverse(a, 26)
     for char in ciphertext:
@@ -90,9 +72,6 @@ def affine_decrypt(ciphertext, a, b):
     return plaintext
 
 def mod_inverse(a, m):
-    """
-    Computes the modular inverse of a modulo m using the extended Euclidean algorithm.
-    """
     if gcd(a, m) != 1:
         return None
     t, new_t = 0, 1
@@ -106,3 +85,24 @@ def mod_inverse(a, m):
     if t < 0:
         t = t + m
     return t
+
+def chacha20_EN(plaintext):
+    plaintext = plaintext.encode('utf-8')
+    key = urandom(32)
+    cipher = ChaCha20.new(key=key)
+    ciphertext = cipher.encrypt(plaintext)
+    nonce = b64encode(cipher.nonce).decode('utf-8')
+    ct = b64encode(ciphertext).decode('utf-8')
+    key = b64encode(key).decode('utf-8')
+    return ct, key, nonce
+
+def chacha20_DE(ciphertext, key, nonce):
+    try:
+        ciphertext = base64.b64decode(ciphertext)
+        nonce = base64.b64decode(nonce)
+        key = base64.b64decode(key)
+        cipher = ChaCha20.new(key=key, nonce=nonce)
+        plaintext = cipher.decrypt(ciphertext)
+        return plaintext.decode('utf-8')
+    except:
+        return None
