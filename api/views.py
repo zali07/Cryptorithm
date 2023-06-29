@@ -12,6 +12,10 @@ from . import app_language, languages
 
 views = Blueprint('views', __name__)
 
+@views.route('/', methods=['GET', 'POST'])
+def home1():
+    return "Hello world!!!"
+
 @views.route('/<language>', methods=['GET', 'POST'])
 @login_required
 def home(language):
