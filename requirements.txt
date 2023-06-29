@@ -1,0 +1,10 @@
+flask==2.2.2
+Babel==2.12.1
+cryptography==40.0.0
+fernet==1.0.1
+flask-babel==3.1.0
+Flask-Login==0.6.2
+Flask-SQLAlchemy==3.0.3
+Jinja2==3.1.2
+SQLAlchemy==2.0.7
+Whirlpool==1.0.0
