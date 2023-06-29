@@ -1,0 +1,49 @@
+{% extends "learning.html" %} {% block title %}Affin{% endblock %} {% block
+middleLearning%}
+<div class="p1" data-id="1">
+  <h2>{{affin.title1}}</h2>
+  <p>
+    {{affin.title1_1}}
+  </p>
+  <p>
+    {{affin.title1_2}}
+  </p>
+</div>
+<div class="p2" data-id="2">
+  <h2>{{affin.title2}}</h2>
+  <p>
+    {{affin.title2_1}}
+  </p>
+  <p>
+    {{affin.title2_2}}
+  </p>
+  <p align="center">c = (a · p + b) (mod 26)</p>
+  <p>
+    {{affin.title2_3_1}}
+    a<sup>-1</sup>
+    {{affin.title2_3_2}}
+  </p>
+  <p align="center">a · a<sup>-1</sup> = 1 (mod 26)</p>
+  <p>{{affin.title2_4}}</p>
+  <p align="center">p = (a<sup>-1</sup> · c - a<sup>-1</sup> · b) (mod 26)</p>
+</div>
+
+<div class="p3" data-id="3">
+  <h2>{{affin.title3}}</h2>
+  <p>
+    {{affin.title3_1}}
+  </p>
+  <p>
+    {{affin.title3_2}}
+  </p>
+  <img width="100%" src="{{url_for('static',filename='images/affin-cipher.png')}}" />
+</div>
+<div id="footer">
+  <form id="moveBtns">
+    <span>
+      <input class="moveBtn" type="button" name="prev" value="Previous" />
+      <input class="moveBtn" type="button" name="next" value="Next" />
+    </span>
+  </form>
+</div>
+{% endblock %} {% block sideLearning%} {% endblock %}

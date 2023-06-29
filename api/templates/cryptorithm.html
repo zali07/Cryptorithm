@@ -1,0 +1,69 @@
+{% extends "base.html" %} {% block title %}Cryptorithm{% endblock %} {% block
+content%}
+
+<div class="wrapper">
+  <span class="icon-close"><ion-icon name="close"></ion-icon></span>
+  <div class="form-box login">
+    <h2>{{cryptorithm.login}}</h2>
+    <form method="POST">
+      <div class="input-box">
+        <span class="icon"><ion-icon name="mail"></ion-icon></span>
+        <input type="email" name="email" required />
+        <label>{{cryptorithm.email}}</label>
+      </div>
+      <div class="input-box">
+        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+        <input type="password" name="password" required />
+        <label>{{cryptorithm.password}}</label>
+      </div>
+      <button type="submit" class="btn" value="login" name="submit_button">
+        {{cryptorithm.login}}
+      </button>
+      <div class="login-signup">
+        <p>{{cryptorithm.no_account}}</p>
+        <a href="#" class="signup-link">{{cryptorithm.signup}}</a>
+      </div>
+    </form>
+  </div>
+
+  <div class="form-box signup">
+    <h2>{{cryptorithm.signup}}</h2>
+    <form method="POST">
+      <div class="input-box">
+        <span class="icon"><ion-icon name="mail"></ion-icon></span>
+        <input type="email" name="signupEmail" required />
+        <label>{{cryptorithm.email}}</label>
+      </div>
+      <div class="input-box">
+        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+        <input type="password" name="signupPass1" required />
+        <label>{{cryptorithm.password}}</label>
+      </div>
+      <div class="input-box">
+        <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+        <input type="password" name="signupPass2" required />
+        <label>{{cryptorithm.password_confirm}}</label>
+      </div>
+      <button type="submit" class="btn" value="signup" name="submit_button">
+        {{cryptorithm.signup}}
+      </button>
+      <div class="login-signup">
+        <p>{{cryptorithm.already_account}}</p>
+        <a href="#" class="login-link">{{cryptorithm.login}}</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block loginBtn %}
+<button class="btnLogin-popup">{{base.login}}</button>
+{% endblock %}
+
+{% block contentLogin %}
+<h4 id="mainTitle">{{base.welcomeTitle}}</h4>
+<p>{{base.welcomeText1}}</p>
+<p>{{base.welcomeText2}}</p>
+<p>{{base.welcomeText3}}</p>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "learning.html" %} {% block title %}Caesar{% endblock %} {% block
+middleLearning%}
+<div class="p1" data-id="1">
+  <h2>{{caesar.title1}}</h2>
+  <p>
+    {{caesar.title1_1}}
+  </p>
+  <p>
+    {{caesar.title1_2}}
+  </p>
+</div>
+<div class="p2" data-id="2">
+  <h2>{{caesar.title2}}</h2>
+  <p>
+    {{caesar.title2_1}}
+  </p>
+  <p>
+    {{caesar.title2_2}}
+  </p>
+  <p align="center">c = (p + k) (mod 26)</p>
+  <p>
+    {{caesar.title2_3}}
+  </p>
+  <p align="center">p = (c - k) (mod 26)</p>
+</div>
+
+<div class="p3" data-id="3">
+  <h2>{{caesar.title3}}</h2>
+  <p>
+    {{caesar.title3_1}}
+  </p>
+  <p>
+    {{caesar.title3_2}}
+  </p>
+</div>
+
+<div id="footer">
+  <form id="moveBtns">
+    <span>
+      <input class="moveBtn" type="button" name="prev" value="Previous" />
+      <input class="moveBtn" type="button" name="next" value="Next" />
+    </span>
+  </form>
+</div>
+{% endblock %} {% block sideLearning%}
+<img class="p1" width="100%" src="{{url_for('static',filename='images/caesarCipher.png')}}" />
+{% endblock %}

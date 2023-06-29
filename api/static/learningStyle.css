@@ -1,0 +1,134 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+ul {
+  list-style: none;
+}
+
+h2,
+p,
+span {
+  color: whitesmoke;
+}
+
+.moveBtn {
+  background-color: #4caf50; /* Green background color */
+  border: none; /* No border */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Padding around the text */
+  text-align: center; /* Center the text horizontally */
+  text-decoration: none; /* No underline */
+  display: inline-block; /* Display as inline element */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Show cursor pointer on hover */
+  border-radius: 4px; /* Rounded corners */
+  transition-duration: 0.4s; /* Smooth transition on hover */
+  width: 100px;
+}
+
+.p2,
+.p3 {
+  display: none;
+}
+
+#imgCTREncryption {
+  position: relative;
+  top: 20%;
+  left: -130%;
+}
+
+#imgCryptorithmSHA1 {
+  position: relative;
+  left: -20%;
+}
+
+#footer {
+  position: fixed;
+  text-align: center;
+  bottom: 5%;
+  left: 7%;
+}
+
+#imgOrigin {
+  display: inline-block;
+}
+
+.learn-side-container {
+  position: fixed;
+}
+
+.accordion-menu {
+  width: 250px;
+  margin: 10px auto 20px;
+  background: #242d41;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #000;
+}
+
+.accordion-menu li:last-child .dropdown {
+  border-bottom: 0;
+}
+.accordion-menu li.active .dropdown {
+  color: #fff;
+}
+.accordion-menu li.active .dropdown .fa-chevron-down {
+  transform: rotate(180deg);
+}
+.dropdown {
+  cursor: pointer;
+  display: block;
+  padding: 15px 15px 15px 25px;
+  font-size: 18px;
+  border-bottom: 2px solid #2d374d;
+  color: #999999;
+  position: relative;
+  transition: all 0.4s ease-out;
+}
+
+.dropdown:hover {
+  background: #566f82; /* fallback colour */
+  background: -webkit-gradient(
+    linear,
+    0% 0%,
+    0% 100%,
+    from(#27455c),
+    to(#273a47)
+  );
+}
+
+.dropdown i {
+  position: absolute;
+  top: 17px;
+  left: 16px;
+}
+
+.dropdown .fa-chevron-down {
+  right: 12px;
+  left: auto;
+  transition: transform 0.2s ease-in-out;
+}
+
+.submenuItems {
+  display: none;
+  background: #2d374d;
+  transition: all 2s ease-in-out;
+}
+
+.accordion-menu li.active .submenuItems {
+  display: block;
+}
+
+.submenuItems a {
+  display: block;
+  color: #66b2ff;
+  font-weight: 600;
+  padding: 12px 12px 12px 25px;
+  transition: all 0.2s ease-out;
+  text-decoration: none;
+}
+
+.submenuItems a:hover {
+  background-color: #5c7185;
+  color: #fff;
+}

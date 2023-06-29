@@ -1,0 +1,69 @@
+{% extends "learning.html" %} {% block title %}SHA-1{% endblock %} {% block
+middleLearning%}
+<div class="p1" data-id="1">
+  <h2>{{sha1.title1}}</h2>
+  <p>
+    {{sha1.title1_1a}}<a href="https://en.wikipedia.org/wiki/National_Security_Agency">NSA</a>(National Security
+    Agency), {{sha1.title1_1b}}
+  </p>
+  <div id="imgOrigin">
+    <span>Input</span>
+    <img width="80%" src="{{url_for('static',filename='images/sha1cryptorithm.png')}}" />
+    <span>Output</span>
+  </div>
+</div>
+<div class="p2" data-id="2">
+  <h2>{{sha1.title2}}</h2>
+  <p>
+    {{sha1.title2_1}}
+  </p>
+  <p>
+    {{sha1.title2_2a}}
+    <br />
+    {{sha1.title2_2b}}
+  </p>
+  <p>
+    {{sha1.title2_3}}
+  </p>
+  <p>
+    {{sha1.title2_4}}
+  </p>
+  <p>
+    {{sha1.title2_5}}
+  </p>
+  <p>
+    {{sha1.title2_6}}
+  </p>
+</div>
+
+<div class="p3" data-id="3">
+  <h2>{{sha1.title3}}</h2>
+  <p>
+    {{sha1.title3_1}}
+  </p>
+  <p>
+    {{sha1.title3_2}}
+  </p>
+  <p>
+    {{sha1.title3_3a}}
+    <br />
+    {{sha1.title3_3b}}
+    <br />
+    {{sha1.title3_3c}}
+    <br />
+    {{sha1.title3_3d}}
+  </p>
+</div>
+
+<div id="footer">
+  <form id="moveBtns">
+    <span>
+      <input class="moveBtn" type="button" name="prev" value="Previous" />
+      <input class="moveBtn" type="button" name="next" value="Next" />
+    </span>
+  </form>
+</div>
+
+{% endblock %} {% block sideLearning%}
+<img class="p2" width="100%" src="{{url_for('static',filename='images/sha1-hashing-algorithm.png')}}" />
+{% endblock %}
