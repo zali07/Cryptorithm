@@ -91,6 +91,10 @@ function addInputs() {
       createLabelElement("key:");
       createInputElementText("BLOWFISH_KEY");
       break;
+    case "BCRYPT_CHECK":
+      createLabelElement("confirm hash:");
+      createInputElementText("BCRYPT_CHECK_HASH");
+      break;
     default:
       break;
   }

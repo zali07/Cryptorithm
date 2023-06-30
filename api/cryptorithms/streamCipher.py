@@ -1,12 +1,10 @@
 import random
 import string
 from math import gcd
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms
-from cryptography.hazmat.primitives.ciphers.modes import CTR
-from cryptography.hazmat.backends import default_backend
 from base64 import b64encode
 from os import urandom
 import base64
+from Crypto.Cipher import ChaCha20
 
 
 def caesar_encrypt(plaintext, shift):
@@ -91,7 +89,7 @@ def mod_inverse(a, m):
 def chacha20_EN(plaintext):
     plaintext = plaintext.encode('utf-8')
     key = urandom(32)
-    cipher = Cipher(algorithms.ChaCha20(key, nonce), mode=CTR(), backend=default_backend())
+    cipher = ChaCha20.new(key=key)
     ciphertext = cipher.encrypt(plaintext)
     nonce = b64encode(cipher.nonce).decode('utf-8')
     ct = b64encode(ciphertext).decode('utf-8')
@@ -103,7 +101,7 @@ def chacha20_DE(ciphertext, key, nonce):
         ciphertext = base64.b64decode(ciphertext)
         nonce = base64.b64decode(nonce)
         key = base64.b64decode(key)
-        cipher = Cipher(algorithms.ChaCha20(key, nonce), mode=CTR(), backend=default_backend())
+        cipher = ChaCha20.new(key=key, nonce=nonce)
         plaintext = cipher.decrypt(ciphertext)
         return plaintext.decode('utf-8')
     except:

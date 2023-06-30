@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_required, current_user
 from .models import Data
 from . import db
@@ -14,7 +14,7 @@ views = Blueprint('views', __name__)
 
 @views.route('/', methods=['GET', 'POST'])
 def home1():
-    return "Hello world!!!"
+    return redirect(url_for('views.home', language=app_language))
 
 @views.route('/<language>', methods=['GET', 'POST'])
 @login_required
@@ -54,6 +54,12 @@ def home(language):
                 ciphertext = has.hash_SHA(plaintext, 512)
             elif selecter == "WHIRLPOOL":
                 ciphertext = has.whirlpool_hash(plaintext)
+            elif selecter == "BCRYPT":
+                ciphertext = has.bcrypt_hash(plaintext)
+            elif selecter == "BCRYPT_CHECK":
+                paraA = request.form.get("BCRYPT_CHECK_HASH")
+                ciphertext = has.bcrypt_check(plaintext, paraA)
+                paraB = plaintext
             elif selecter == "CHACHA20_EN":
                 ciphertext, paraA, paraB = stc.chacha20_EN(plaintext)
             elif selecter == "CHACHA20_DE":
@@ -80,6 +86,7 @@ def home(language):
                     return render_template("home.html", user=current_user, language=language, **languages[language])
                 paraB = request.form.get("AES-128-CTR_NONCE")
                 ciphertext = bcc.AES_CTR_DE(plaintext, paraA, paraB)
+                paraA = request.form.get("AES-128-CTR_KEY")
             elif selecter == "AES-256_CTR_EN":
                 password = request.form.get("AES-256-CTR_PASS")
                 ciphertext, paraA, paraB = bcc.AES_CTR_EN(plaintext, password, 256)
@@ -95,6 +102,7 @@ def home(language):
                     return render_template("home.html", user=current_user, language=language, **languages[language])
                 paraB = request.form.get("AES-256-CTR_NONCE")
                 ciphertext = bcc.AES_CTR_DE(plaintext, paraA, paraB)
+                paraA = request.form.get("AES-256-CTR_KEY")
             if ciphertext == None:
                 flash('Wrong credentials, can\'t decode message!', category='error')
                 return render_template("home.html", user=current_user, language=language, **languages[language])
@@ -157,6 +165,13 @@ def whirlpool(language):
     if(language not in languages):
         language = app_language
     return render_template("/learnItems/whirlpool.html", user=current_user, language=language, **languages[language])
+
+@views.route('/learning/bcrypt/<language>', methods=['GET', 'POST'])
+def bcrypt(language):
+    if(language not in languages):
+        language = app_language
+    return render_template("/learnItems/bcrypt.html", user=current_user, language=language, **languages[language])
+
 
 @views.route('/delete-data', methods=['POST'])
 @login_required

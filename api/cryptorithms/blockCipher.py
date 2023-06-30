@@ -1,11 +1,12 @@
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from cryptography.hazmat.primitives.ciphers.modes import CBC
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.hazmat.primitives import hashes
 from os import urandom
 import base64
 from struct import pack
+from Crypto.Cipher import Blowfish
+from Crypto.Util.Padding import pad, unpad
 
 
 def AES_CTR_EN(plaintext, password, AESType): #AESType 128 or 256
@@ -46,27 +47,15 @@ def AES_CTR_DE(ciphertext, key, nonce):
     
 def blowfish_EN(plaintext):
     data = plaintext.encode("utf-8")
-    bs = 8
     key = urandom(16)
-    iv = urandom(8)
-    cipher = Cipher(algorithms.Blowfish(key), mode=CBC(iv), backend=default_backend())
-    plen = bs - len(data) % bs
-    padding = [plen]*plen
-    padding = pack('b'*plen, *padding)
-    msg = cipher.iv + cipher.encrypt(data + padding)
-    return msg.hex(), key.hex()
+    cipher = Blowfish.new(key, Blowfish.MODE_ECB)
+    ciphertext = cipher.encrypt(pad(data, Blowfish.block_size))
+    return ciphertext.hex(), key.hex()
 
 
 def blowfish_DE(ciphertext, key):
-    try:
-        ciphertext = bytes.fromhex(ciphertext)
-        key = bytes.fromhex(key)
-        bs = 8
-        iv = urandom(8) #!!!!!!!!!!!!!!!!!!!!!!
-        cipher = Cipher(algorithms.Blowfish(key), mode=CBC(iv), backend=default_backend())
-        plaintext = cipher.decrypt(ciphertext[bs:])
-        padding_len = plaintext[-1]
-        plaintext = plaintext[:-padding_len].decode('utf-8')
-        return plaintext
-    except:
-        return None
+    ciphertext = bytes.fromhex(ciphertext)
+    key = bytes.fromhex(key)
+    cipher = Blowfish.new(key, Blowfish.MODE_ECB)
+    plaintext = unpad(cipher.decrypt(ciphertext), Blowfish.block_size)
+    return plaintext.decode("utf-8")

@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
+{% extends "base.html" %} {% block title %}{{base.crypt}}{% endblock %} {% block content%}
 <h1 align="center" id="homeTitle">{{home.history}}</h1>
 <div class="list-container">
   <ul class="list-group list-group-flush" id="data">
@@ -21,12 +21,12 @@
 </div>
 
 <form method="POST">
-  <textarea name="ptext" id="ptext" class="form-control" placeholder="Type the plaintext here..."></textarea>
+  <textarea name="ptext" id="ptext" class="form-control" placeholder="{{home.placeholder}}"></textarea>
   <br />
   <label for="encryptype" id="algChooser">{{home.choose}}</label>
   <select name="enty" id="enty" onchange="addInputs()">
-    <option value="" disabled selected>None</option>
-    <optgroup label="Stream Cipher">
+    <option value="" disabled selected>{{home.none}}</option>
+    <optgroup label="{{learning.list2}}">
       <option value="CAESAR_EN">Caesar EN</option>
       <option value="CAESAR_DE">Caesar DE</option>
       <option value="AFFINE_EN">Affine EN</option>
@@ -34,14 +34,16 @@
       <option value="CHACHA20_EN">ChaCha20 EN</option>
       <option value="CHACHA20_DE">ChaCha20 DE</option>
     </optgroup>
-    <optgroup label="Hash">
+    <optgroup label="{{learning.list3}}">
       <option value="SHA-1">SHA-1</option>
       <option value="SHA-256">SHA-256</option>
       <option value="SHA-384">SHA-384</option>
       <option value="SHA-512">SHA-512</option>
       <option value="WHIRLPOOL">Whirlpool</option>
+      <option value="BCRYPT">bcrypt</option>
+      <option value="BCRYPT_CHECK">bcrypt Check</option>
     </optgroup>
-    <optgroup label="Block Cipher">
+    <optgroup label="{{learning.list4}}">
       <option value="AES-128_CTR_EN">AES-128 CTR EN</option>
       <option value="AES-128_CTR_DE">AES-128 CTR DE</option>
       <option value="AES-256_CTR_EN">AES-256 CTR EN</option>
@@ -54,7 +56,7 @@
   <br />
   <div align="center">
     <button type="submit" name="submit" class="btn btn-primary" id="sbmButton">
-      Submit
+      {{home.submit}}
     </button>
   </div>
 </form>

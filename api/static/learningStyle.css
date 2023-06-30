@@ -78,7 +78,7 @@ span {
 .dropdown {
   cursor: pointer;
   display: block;
-  padding: 15px 15px 15px 25px;
+  padding: 10px 15px 10px 25px;
   font-size: 18px;
   border-bottom: 2px solid #2d374d;
   color: #999999;
@@ -123,7 +123,7 @@ span {
   display: block;
   color: #66b2ff;
   font-weight: 600;
-  padding: 12px 12px 12px 25px;
+  padding: 10px 12px 10px 25px;
   transition: all 0.2s ease-out;
   text-decoration: none;
 }

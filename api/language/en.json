@@ -21,13 +21,19 @@
   },
   "home": {
     "history": "History",
-    "choose": "Choose an algortihm: "
+    "choose": "Choose an algortihm: ",
+    "submit": "Submit",
+    "placeholder": "Enter your text here...",
+    "none": "None"
   },
   "learning": {
     "learn_about": "Learn about!",
-    "list1": "Stream Cipher",
-    "list2": "Hash",
-    "list3": "Block Cipher"
+    "list1": "Basics",
+    "list2": "Stream Cipher",
+    "list3": "Hash",
+    "list4": "Block Cipher",
+    "next": "Next",
+    "previous": "Previous"
   },
   "caesar": {
     "title1": "Caesar - Origin",
@@ -180,5 +186,17 @@
     "title3_3": "A Whirlpool jelenleg is használatban van több különböző területen, például:",
     "title3_4": "Digitális aláírások: A Whirlpool hash-függvényt alkalmazzák digitális aláírások létrehozásához. Segít az adatok integritásának ellenőrzésében és a digitális aláírások biztonságában.",
     "title3_5": "Jelszó tárolás: A Whirlpool hash-függvényt néha használják jelszavak tárolásához. A jelszavakat először a hash-függvénnyel alakítják át, majd a hash-értéket tárolják a rendszerben. Ez biztonságosabbá teszi a jelszavak tárolását, mivel a hash-érték alapján nem lehet visszafejteni a jelszót."
+  },
+  "bcrypt": {
+    "title1": "bcrypt Eredet",
+    "title2": "bcrypt Leírás",
+    "title3": "bcrypt Biztonság / Alkalmazások",
+    "title1_1": "A bcrypt egy hash-függvény, amelyet Niels Provos és David Mazières tervezett. A tervezési folyamat során céljuk egy biztonságos és hatékony hash-algoritmus létrehozása volt. A bcrypt 1999-ben vált nemzetközileg elfogadott standarddá.",
+    "title2_1": "Most tekintsünk részletesebben a bcrypt működésére:",
+    "title2_2": "A bcrypt hash függvény két fő részből áll: a sózásból és az iteratív kriptográfiából. A sózás egy véletlenszerűen generált érték (só), amelyet a jelszóval együtt hash-elnek. Ez biztosítja, hogy két azonos jelszó különböző hash értéket kapjon.",
+    "title2_3": "Az iteratív kriptográfia azt jelenti, hogy a bcrypt hash függvényt többször futtatják a jelszó és a só kombinációján. Ez a folyamat lassítja a hashelést, ami megnehezíti a támadóknak a brute force vagy a szivárgott jelszavak felhasználásával történő támadásokat.",
+    "title3_1": "A bcrypt hash függvény kiemelkedően biztonságos a jelszavak tárolására. A sózás és az iteratív kriptográfia kombinációja hatékonyan ellenáll a brute force támadásoknak és a szivárgott jelszavak kihasználásának.",
+    "title3_2": "A bcrypt hash függvény alkalmas a jelszavak ellenőrzésére is. Amikor egy felhasználó bejelentkezik, a rendszer hash-eli a megadott jelszót és összehasonlítja azt a tárolt hash értékkel. Ez lehetővé teszi, hogy a rendszer meghatározza, hogy a megadott jelszó helyes-e, anélkül hogy magát a jelszót tárolná vagy kiszivárogtathatná.",
+    "title3_3": "A bcrypt hash függvény a jelenlegi legjobb gyakorlatok közé tartozik a jelszó tárolásában, és ajánlott minden olyan alkalmazásban, ahol a felhasználók jelszavakat használnak. Fontos megjegyezni, hogy a függvényt megfelelő módon kell beállítani, például megfelelő sózást és iterációs számot kell használni ahhoz, hogy maximális biztonságot nyújtson."
   }
 }

@@ -21,13 +21,19 @@
   },
   "home": {
     "history": "Előzmények",
-    "choose": "Válassz egy módszert:"
+    "choose": "Válassz egy módszert:",
+    "submit": "Küldés",
+    "placeholder": "Írja be az üzenetet...",
+    "none": "Üress"
   },
   "learning": {
     "learn_about": "Tudj meg többet!",
-    "list1": "Rejtjelezés",
-    "list2": "Hash",
-    "list3": "Blokk titkosítás"
+    "list1": "Alapok",
+    "list2": "Rejtjelezés",
+    "list3": "Hash",
+    "list4": "Blokk titkosítás",
+    "next": "Tovább",
+    "previous": "Vissza"
   },
   "caesar": {
     "title1": "Caesar - Eredet",
@@ -56,7 +62,7 @@
     "title3_2": "Bár az Affin rejtjelezés már nem tekinthető biztonságosnak a modern kriptográfiai célokra, még mindig tanulmányozzák és használják oktatási környezetben a titkosítás és dekódolás alapvető fogalmainak szemléltetésére. Bevezetésként szolgál a bonyolultabb kódok és kriptográfiai technikák megismeréséhez."
   },
   "aes": {
-    "title1": "AES (Advanced Encryption Standard) - Eredet",
+    "title1": "AES - Eredet",
     "title2": "AES-CTR Leírás",
     "title3": "AES-CTR Biztonság / Példa",
     "title1_1": "Az AES, más néven Rijndael, egy szimmetrikus blokk titkosításó rendszer, amelyet a NIST 2001-ben szabványosított. A rendszert két belga kriptográfus, Vincent Rijmen és Joan Daemen fejlesztette ki, a Rijndael név a nevük rövidítése.",
@@ -69,9 +75,9 @@
     "title1_4d": "- A titkosítás és a visszafejtés ugyanazt a struktúrát használja",
     "title1_4e": "- A rossz blokk csak az aktuális blokkot érinti",
     "title1_4f": "Cons:",
-    "title1_4g": "A MITM (Man in the Middle) megváltoztathatja a titkosított szöveg sérült egyszerű szövegét",
+    "title1_4g": "- A MITM (Man in the Middle) megváltoztathatja a titkosított szöveg sérült szövegét",
     "title2_1": "A titkos szimmetrikus kulcsot generálják vagy előre biztosítják. Az AES algoritmus ezt a kulcsot veszi, és kerek kulcsok halmazává bővíti, amelyeket a későbbi titkosítási folyamat során használnak.",
-    "title2_2": "Az inicializáció vektor egy egyedi érték, amely a CTR módhoz szükséges. Az IV lehet véletlenszerűen generált vagy egy nonce (egyszer használt szám) és egy számlálóból származtatott. Az IV-nek minden titkosítási műveletnél egyedinek kell lennie a biztonság fenntartása érdekében. A számláló értéke az IV alapján inicializálódik. A számláló egy egyedi érték, amelyet minden egyes egyszerű vagy rejtjelezett szövegblokk esetében növelni kell.",
+    "title2_2": "Az IV-nek minden titkosítási műveletnél egyedinek kell lennie a biztonság fenntartása érdekében. A számláló értéke az IV alapján inicializálódik. A számláló egy egyedi érték, amelyet minden egyes egyszerű vagy rejtjelezett szövegblokk esetében növelni kell.",
     "title2_3": "Az AES-CTR úgy működik, hogy a nyílt szöveget fix méretű blokkokra (pl. 128 bit) osztja. Minden egyes blokk esetében a számláló értéke az AES algoritmus és a kulcsbővítési fázisban generált körkulcsok segítségével titkosítva van. A számlálónak ez a titkosítása egy pszeudorandom kulcsfolyamot eredményez.",
     "title2_4": "A titkosítási lépésből generált pszeudorandom kulcsfolyamot ezután XOR-oljuk a megfelelő nyílt szövegű blokkal. Az XOR művelet eredménye a rejtjelezett szövegblokk. Ez a folyamat megismétlődik a nyílt szöveg minden egyes blokkjára, így keletkezik a teljes rejtjelezett szöveg.",
     "title2_5a": "Minden egyes titkosítási vagy visszafejtési művelet után a számláló értéke növekszik annak biztosítása érdekében, hogy minden blokkhoz egyedi értéket használjanak.",
@@ -99,7 +105,7 @@
     "title2_2b": "A két öt 32 bites regiszter (\"A, B, C, D, E\" és \"H0, H1, H2, H3, H4\") meghatározott kezdeti értékekkel rendelkezik, és a 80 32 bites szóból álló sorozat (W[0], W[1], W[2]... W[78], W[79]).",
     "title2_3": "Az SHA-1 algoritmus magja egy tömörítési függvény, amely egy 160 bites üzenettömbön és az üzenet digest aktuális állapotán dolgozik. Egy sor műveletet hajt végre, többek között bitenkénti logikai függvényeket, üzenetbővítést és moduláris összeadást.",
     "title2_4": "A tömörítési függvényt iteratív módon alkalmazza minden egyes üzenetblokkra, frissítve az üzenet digest állapotát minden egyes blokk feldolgozásakor. A végső kimenet a bemeneti üzenet hash-értéke.",
-    "title2_5": "Minden egyes blokk egy összetett folyamaton megy keresztül, amely során egyenként 20 lépésből álló bővítésen és 80 tömörítési körön megy keresztül. Az egyes tömörítések után kapott érték hozzáadódik az aktuális pufferhez (hash állapot).",
+    "title2_5": "Minden egyes blokk egy összetett folyamaton megy keresztül, amely során egyenként 20 lépésből álló bővítésen és 80 tömörítési körön megy keresztül. Az egyes tömörítések után kapott érték hozzáadódik az aktuális pufferhez.",
     "title2_6": "Az így kapott hash-érték egy 160 bitből álló, rögzített méretű digest. Ez a bemeneti üzenet egyedi ujjlenyomatát jelenti, ami nagyon valószínűtlenné teszi, hogy két különböző üzenet ugyanazt a hash-értéket adja.",
     "title3_1": "Az SHA-1 egyik fő sebezhetősége a csökkent ütközésállósága. Az ütközés akkor következik be, amikor két különböző bemenet ugyanazt a hash-kimenetet eredményezi. 2005-ben kutatók bemutattak egy elméleti ütközési támadást az SHA-1 ellen, 2017-ben pedig sikeresen végrehajtottak egy tényleges ütközési támadást, ami rávilágított a gyakorlati biztonsági kockázatokra.",
     "title3_2": "Az azonosított sebezhetőségek miatt az SHA-1 elavultnak tekinthető, és nem ajánlott új kriptográfiai alkalmazásokban használni. Helyette erősebb hash függvények, mint az SHA-256 vagy magasabb tanúsítványok használata javasolt a nagyobb biztonság érdekében.",
@@ -180,5 +186,17 @@
     "title3_3": "A Whirlpool jelenleg is használatban van több különböző területen, például:",
     "title3_4": "Digitális aláírások: A Whirlpool hash-függvényt alkalmazzák digitális aláírások létrehozásához. Segít az adatok integritásának ellenőrzésében és a digitális aláírások biztonságában.",
     "title3_5": "Jelszó tárolás: A Whirlpool hash-függvényt néha használják jelszavak tárolásához. A jelszavakat először a hash-függvénnyel alakítják át, majd a hash-értéket tárolják a rendszerben. Ez biztonságosabbá teszi a jelszavak tárolását, mivel a hash-érték alapján nem lehet visszafejteni a jelszót."
+  },
+  "bcrypt": {
+    "title1": "bcrypt Eredet",
+    "title2": "bcrypt Leírás",
+    "title3": "bcrypt Biztonság / Alkalmazások",
+    "title1_1": "A bcrypt egy hash-függvény, amelyet Niels Provos és David Mazières tervezett. A tervezési folyamat során céljuk egy biztonságos és hatékony hash-algoritmus létrehozása volt. A bcrypt 1999-ben vált nemzetközileg elfogadott standarddá.",
+    "title2_1": "Most tekintsünk részletesebben a bcrypt működésére:",
+    "title2_2": "A bcrypt hash függvény két fő részből áll: a sózásból és az iteratív kriptográfiából. A sózás egy véletlenszerűen generált érték (só), amelyet a jelszóval együtt hash-elnek. Ez biztosítja, hogy két azonos jelszó különböző hash értéket kapjon.",
+    "title2_3": "Az iteratív kriptográfia azt jelenti, hogy a bcrypt hash függvényt többször futtatják a jelszó és a só kombinációján. Ez a folyamat lassítja a hashelést, ami megnehezíti a támadóknak a brute force vagy a szivárgott jelszavak felhasználásával történő támadásokat.",
+    "title3_1": "A bcrypt hash függvény kiemelkedően biztonságos a jelszavak tárolására. A sózás és az iteratív kriptográfia kombinációja hatékonyan ellenáll a brute force támadásoknak és a szivárgott jelszavak kihasználásának.",
+    "title3_2": "A bcrypt hash függvény alkalmas a jelszavak ellenőrzésére is. Amikor egy felhasználó bejelentkezik, a rendszer hash-eli a megadott jelszót és összehasonlítja azt a tárolt hash értékkel. Ez lehetővé teszi, hogy a rendszer meghatározza, hogy a megadott jelszó helyes-e, anélkül hogy magát a jelszót tárolná vagy kiszivárogtathatná.",
+    "title3_3": "A bcrypt hash függvény a jelenlegi legjobb gyakorlatok közé tartozik a jelszó tárolásában, és ajánlott minden olyan alkalmazásban, ahol a felhasználók jelszavakat használnak. Fontos megjegyezni, hogy a függvényt megfelelő módon kell beállítani, például megfelelő sózást és iterációs számot kell használni ahhoz, hogy maximális biztonságot nyújtson."
   }
 }
