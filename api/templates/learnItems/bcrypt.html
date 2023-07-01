@@ -1,54 +1,39 @@
-{% extends "learning.html" %} {% block title %}ChaCha20{% endblock %} {% block
+{% extends "learning.html" %} {% block title %}bcrypt{% endblock %} {% block
 middleLearning%}
 <div class="p1" data-id="1">
-    <h2>{{chacha.title1}}</h2>
+    <h2>{{bcrypt.title1}}</h2>
     <p>
-        {{chacha.title1_1}}
+        {{bcrypt.title1_1}}
     </p>
 </div>
 <div class="p2" data-id="2">
-    <h2>{{chacha.title2}}</h2>
+    <h2>{{bcrypt.title2}}</h2>
     <p>
-        {{chacha.title2_1}}
+        {{bcrypt.title2_1}}
     </p>
     <p>
-        {{chacha.title2_2}}
-    </p>
-    <p>
-        {{chacha.title2_3}}
-    </p>
-    <p>
-        {{chacha.title2_4}}
-    </p>
-    <p>
-        {{chacha.title2_5}}
+        {{bcrypt.title2_2}}
     </p>
 </div>
 
 <div class="p3" data-id="3">
-    <h2>{{chacha.title3}}</h2>
+    <h2>{{bcrypt.title3}}</h2>
     <p>
-        {{chacha.title3_1}}
+        {{bcrypt.title3_1}}
     </p>
     <p>
-        {{chacha.title3_2}}
+        {{bcrypt.title3_2}}
     </p>
     <p>
-        {{chacha.title3_3}}
-    </p>
-    <p>
-        {{chacha.title3_4}}
-    </p>
-    <p>
-        {{chacha.title3_5}}
+        {{bcrypt.title3_3}}
     </p>
 </div>
 
 <div id="footer">
     <form id="moveBtns">
         <span>
-            <input class="moveBtn" type="button" name="prev" value="Previous" />
-            <input class="moveBtn" type="button" name="next" value="Next" />
+            <input class="moveBtn" type="button" name="prev" value="{{learning.previous}}" />
+            <input class="moveBtn" type="button" name="next" value="{{learning.next}}" />
         </span>
     </form>
 </div>

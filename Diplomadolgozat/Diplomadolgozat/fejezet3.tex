@@ -13,45 +13,94 @@ A kulcs a kriptográfiában egy olyan titkosítási vagy visszafejtési folyamat
 
 \newpage
 \subsection{Titkosítási módok}
-A titkosítási módok meghatározzák, hogy a titkosítás hogyan történik az üzenetek blokkjainak kezelése során. A gyakran használt titkosításí üzemmódok a következőek: ECB(Electronic Codebook), CBC(Ciper Block Chaining), CFB(Cipher Feedback), OFB(Output Feedback) és a CTR(Counter).
+A titkosítási módok meghatározzák, hogy a titkosítás hogyan történik az üzenetek blokkjainak kezelése során. A gyakran használt titkosításí módok a következőek: ECB(Electronic Codebook), CBC(Ciper Block Chaining), CFB(Cipher Feedback), OFB(Output Feedback) és a CTR(Counter).
 A felsorolt üzemmódok mellett számos más speciális üzemmód létezik, amelyek különböző funkciókkat és jellemzőket kínálnak. A megfelelő kiválasztása és alkalmazása az adott kriptográfiai algoritmustól függ.
 
 A Cryptorithm esetében az AES blokk titkosító CTR üzemmódban próbálható ki, ami azt jelenti, hogy a blokkok titkosítása egy folyamatosan növekvő számláló alapján történik. A számláló értékét XOR-olják az adatblokkal a blokk titkosítása előtt. Ez a módszer párhuzamosításra alkalmas, mivel a blokkok függetlenül titkosíthatóak.
 
 \subsection{Rejtjelezések}
-A dolgozatomban 3 fajta rejtjelezést, avagy tikosítást különböztetek meg: blokktikosítás, folyamtitkosítás és hash fügvények.
+A dolgozatomban 2 fajta rejtjelezést, avagy tikosítást különböztetek meg, a \textbf{klasszikus} és a \textbf{szimmetrikus} titkosítókat. A klasszikus titkosítókhoz tartoznak a Caesar és Affin rejtjelezések, ezeket a rendszereket ma már csak kizárólag példaképpen használják a bevezetéshez a kriptográfia világába. A szimmetrikus titkosítás az jelenti, hogy mind a titkosításra, mind a visszafejtésre ugyanazt a kulcsot használják, ide tartoznak a ChaCha20, az AES és a Blowfish rejtjelezések. Továbbá mindegyik rejtjelezés két féle lehet, blokk- vagy folyamtitkosító.
 
-A blokktitkosítók a bemeneti adatot blokkokra osztják, majd ezeket a blokkokat titkosítják. A blokkok mérete álltalában azonos, és ugyanazt a titkosítási kulcsot és algoritmust használják. Ilyen titkosító például az AES és a Blowfish. Előnyei a hatékonyság, mivel a blokkok egyszerre titkosíthatóak és dekódolhatóak, továbbá hibajavítási képessége, mert egy hibás blokk nem terjed át a többi blokkra.
+A \textbf{blokktitkosítók} a bemeneti adatot blokkokra osztják, majd ezeket a blokkokat titkosítják. A blokkok mérete álltalában azonos, és ugyanazt a titkosítási kulcsot és algoritmust használják. Ilyen titkosító például az AES és a Blowfish. Előnyei a hatékonyság, mivel a blokkok egyszerre titkosíthatóak és dekódolhatóak, továbbá hibajavítási képessége, mert egy hibás blokk nem terjed át a többi blokkra.
 
-A folyamtitkosítók bitenként vagy bitek kis csoportjaival dolgozik, és a titkosítás során egy folyamot generál. A folyamtitkosítás az adatokat a generált folyammal kombinálja. Előnyei közé tartozik a sebesség és az adatfolyam feldolgozásának hatékonysága, mivel az adatokat bitek szintjén lehet titkosítani és dekódolni. Emellett a folyamtitkosítás ellenállóbb lehet a blokktitkosítással szembeni kriptoanalitikai támadásokkal szemben, mivel nem állít elő azonos bemenetekhez azonos kimeneteket. Ilyen titkosítót például a ChaCha20, Caesar és Affin.
-
-A hash-függvények olyan matematikai algoritmusok, amelyek egy tetszőleges hosszúságú bemenetet (pl. üzenetet) átalakítanak egy fix hosszúságú, látszólag véletlenszerű kimenetbe. A hashelés segít a felhasználóknak az adatok hitelességének ellenőrzésében. Továbbá erejük és megbízhatóságuk abban rejlik, hogy irreverzibilisek, nem lehet visszaállítani a hash értékéből a bemeneti adatot eredeti formájában és ugyanakkor ütközmentesek, vagyis nagyon alacsony valószínűséggel található két különböző bemenet, amelyek ugyanahhoz a hash értékhez vezetnek. Ilyen függvény például az SHA és a Whirlpool.
+A \textbf{folyamtitkosítók} bitenként vagy bitek kis csoportjaival dolgozik, és a titkosítás során egy folyamot generál. A folyamtitkosítás az adatokat a generált kulcs folyammal kombinálja. Előnyei közé tartozik a sebesség és az adatfolyam feldolgozásának hatékonysága, mivel az adatokat bitek szintjén lehet titkosítani és dekódolni. Emellett a folyamtitkosítás ellenállóbb lehet a blokktitkosítással szembeni kriptoanalitikai támadásokkal szemben, mivel nem állít elő azonos bemenetekhez azonos kimeneteket. Ilyen titkosító például a ChaCha20.
 
 \pagebreak
+\subsection{Hash függvények}
+Az alkalmazás a rejtjelezők mellett még lehetőséget ad a hash függvények tanulmányozására is. A hash-függvények olyan matematikai algoritmusok, amelyek egy tetszőleges hosszúságú bemenetet (pl. üzenetet) átalakítanak egy fix hosszúságú, látszólag véletlenszerű kimenetbe. A hashelés segít a felhasználóknak az adatok hitelességének ellenőrzésében. Továbbá erejük és megbízhatóságuk abban rejlik, hogy irreverzibilisek, nem lehet visszaállítani a hash értékéből a bemeneti adatot eredeti formájában és ugyanakkor ütközmentesek, vagyis nagyon alacsony valószínűséggel található két különböző bemenet, amelyek ugyanahhoz a hash értékhez vezetnek. Ilyen függvény például az SHA, a Whirlpool és a bcrypt.
+
+
 \section{Kriptográfia rendszerek}
 A következőkben megemlítem azokat a krpitográfiai módszereket amelyek elérhetőek a Cryptorithm alkalmazásban.
 
-\subsection {Caesar rejtjelezés}
-A Caesar rejtjelezés Julius Caesarról, az ókori római katonai és politikai vezetőről kapta a nevét, aki a feltételezések szerint ezt a titkosítási technikát használta. Egy egyszerű eltolásos titkosítási módszer, amelyben az összes betűt egy adott számmal, a kulcsként használt eltolással helyettesítik. Például, ha a kulcs 3, akkor az "A" betűt a "D" betűre cserélik, a "B" betűt az "E" betűre stb. A Caesar rejtjelezés könnyen feltörhető, mivel csak 26 lehetséges eltolási kulcs létezik, amelyeket egyszerűen végig lehet próbálni.
 
-\subsection {Affin rejtjelezés}
-Az Affin rejtjelezés egy egyszerű szubsztitúciós rejtjelezési módszer, amely a Caesar rejtjelezésre épül. Az Affin rejtjelezés egy lineáris transzformációt alkalmaz a betűkön, amely egy egyenlet alapján helyezi át azokat. Az Affin rejtjelezés a kulcsként használt két paraméter segítségével végez transzformációt az üzeneten. Az Affin rejtjelezés gyenge pontja, hogy az egyszerű frekvenciaanalízis módszerekkel feltörhető lehet, különösen kis méretű kulcsok esetén.
+\subsection{Klasszikus titkosítók bemutatása}
+A \textbf{Caesar} rejtjelezés Julius Caesarról, az ókori római katonai és politikai vezetőről kapta a nevét, aki a feltételezések szerint ezt a titkosítási technikát használta. Egy egyszerű eltolásos titkosítási módszer, amelyben az összes betűt egy adott számmal, a kulcsként használt eltolással helyettesítik. Például, ha a kulcs 3, akkor az "A" betűt a "D" betűre cserélik, a "B" betűt az "E" betűre stb. A Caesar rejtjelezés könnyen feltörhető, mivel csak 26 lehetséges eltolási kulcs létezik, amelyeket egyszerűen végig lehet próbálni.
 
-\vspace{10pt}
+
+Az \textbf{Affin} rejtjelezés egy egyszerű szubsztitúciós rejtjelezési módszer, amely a Caesar rejtjelezésre épül. Az Affin rejtjelezés egy lineáris transzformációt alkalmaz a betűkön, amely egy egyenlet alapján helyezi át azokat. Az Affin rejtjelezés a kulcsként használt két paraméter segítségével végez transzformációt az üzeneten. Az Affin rejtjelezés gyenge pontja, hogy az egyszerű frekvenciaanalízis módszerekkel feltörhető lehet, különösen kis méretű kulcsok esetén.
+
+
 Fontos megjegyezni, hogy az Affin és Caesar rejtjelezések gyakorlati alkalmazásban már nem számítanak biztonságosnak, mivel könnyen feltörhetők.
 
-\subsection {ChaCha20}
-A ChaCha20 elsősorban szimmetrikus titkosítási algoritmusként és folyamtitkosítóként használatos. Gyakran alkalmazzák hálózati protokollokban, biztonságos kommunikációban és nagy teljesítményű titkosítást igénylő alkalmazásokban. A ChaCha20 a sebességéről és biztonságáról ismert, és a régebbi titkosítók, például az RC4 alternatívájaként vált népszerűvé.
+\pagebreak
+\subsection {Szimmetrikus titkosítók bemutatása}
+A \textbf{ChaCha20} elsősorban szimmetrikus titkosítási algoritmusként és folyamtitkosítóként használatos. Gyakran alkalmazzák hálózati protokollokban, biztonságos kommunikációban és nagy teljesítményű titkosítást igénylő alkalmazásokban. A ChaCha20 a sebességéről és biztonságáról ismert, és a régebbi titkosítók, például az RC4 alternatívájaként vált népszerűvé. \cite{Heiko}
 
-\newpage
-\subsection {SHA (Secure Hash Algorithm)}
- Az SHA egy hash függvény család, amelyeket a digitális adatok integritásának ellenőrzésére és az adatok egyedi azonosítására használnak. Az SHA hash függvények, például az SHA-1, SHA-256 stb., egy adott bemeneti üzenetet átalakítanak egy fix hosszú hash kóddá. Az SHA algoritmusok irreverzibilisek, vagyis a hash értékből nem lehet visszaállítani az eredeti üzenetet. Ez a tulajdonságuk hasznos a jelszavak, digitális aláírások és az üzenetek integritásának védelmében.
 
-\subsection {Whirlpool}
-A Whirlpool egy hash-függvény, amelyet általában adatintegritás-ellenőrzésre és digitális aláírásra használnak. Fix méretű, jellemzően 512 bit hosszú hash-értéket állít elő. A Whirlpoolt különböző biztonsági alkalmazásokban használják, például a fájlok integritásának ellenőrzésére, jelszavak tárolására és üzenethitelesítésre.
+Az \textbf{AES} egy szimmetrikus blokktitkosítási algoritmus, amelyet a biztonságos adatátvitel és tárolás céljából használnak. Az AES algoritmus blokkokat titkosít a bemeneti üzenetből, és ezek a titkosított blokkok kombinálódnak a kimeneti titkosított üzenet létrehozásához. Az AES-t az Egyesült Államok Kormánya ajánlja a kormányzati és ipari alkalmazásokban. Az AES több különböző kulcsmérettel (128, 192, 256 bites) és különböző üzemmódokkal (pl. CTR, CBC, ECB) használható. \cite{AES}
 
-\subsection {AES (Advanced Encryption Standard)}
- Az AES egy szimmetrikus blokktitkosítási algoritmus, amelyet a biztonságos adatátvitel és tárolás céljából használnak. Az AES algoritmus blokkokat titkosít a bemeneti üzenetből, és ezek a titkosított blokkok kombinálódnak a kimeneti titkosított üzenet létrehozásához. Az AES-t az Egyesült Államok Kormánya ajánlja a kormányzati és ipari alkalmazásokban. Az AES több különböző kulcsmérettel (128, 192, 256 bites) és különböző üzemmódokkal (pl. CTR, CBC, ECB) használható.
 
-\subsection {Blowfish}
-A Blowfish egy szimmetrikus kulcsú blokktitkosító, amely 64 bites blokkokkal dolgozik, és változó kulcsméreteket támogat (32 bittől 448 bitig). Gyakran használják olyan alkalmazásokban, amelyek érzékeny adatok titkosítását és visszafejtését igénylik. A Blowfish-t széles körben alkalmazzák protokollokban, szoftverekben és hardveres rendszerekben a titkosság és az adatvédelem biztosítása érdekében.
+A \textbf{Blowfish} egy szimmetrikus kulcsú blokktitkosító, amely 64 bites blokkokkal dolgozik, és változó kulcsméreteket támogat (32 bittől 448 bitig). Gyakran használják olyan alkalmazásokban, amelyek érzékeny adatok titkosítását és visszafejtését igénylik. A Blowfish-t széles körben alkalmazzák protokollokban, szoftverekben és hardveres rendszerekben a titkosság és az adatvédelem biztosítása érdekében. \cite{Blowfish}
+
+
+\subsection {Hash függvények bemutatása}
+A \textbf{Whirlpool} egy hash-függvény, amelyet általában adatintegritás-ellenőrzésre és digitális aláírásra használnak. Fix méretű, jellemzően 512 bit hosszú hash-értéket állít elő. A Whirlpoolt különböző biztonsági alkalmazásokban használják, például a fájlok integritásának ellenőrzésére, jelszavak tárolására és üzenethitelesítésre. \cite{Whirlpool}
+
+Az \textbf{SHA} egy hash függvény család, amelyeket a digitális adatok integritásának ellenőrzésére és az adatok egyedi azonosítására használnak. Az SHA hash függvények, például az SHA-1, SHA-256 stb., egy adott bemeneti üzenetet átalakítanak egy fix hosszú hash kóddá. Az SHA algoritmusok irreverzibilisek, vagyis a hash értékből nem lehet visszaállítani az eredeti üzenetet. Ez a tulajdonságuk hasznos a jelszavak, digitális aláírások és az üzenetek integritásának védelmében.
+
+A \textbf{bcrypt} egy hash függvény, amelyet leginkább jelszavak biztonságos tárolására és ellenőrzésére használnak. Az algoritmus tervezésekor arra törekedtek, hogy lassú legyen a hash függvények hasítási sebessége, hogy megnehezítse a jelszavak visszafejtését a hash értékből. Az algoritmus egy sor iterációt végez a jelszó hasításához, és egy só (salt) értéket használ, amely tovább növeli a biztonságot. A jelszó karakterlánc, egy számokban kifejezett költség és egy sóérték a bcrypt algoritmus bemenete. Ezeket a bemeneteket a bcrypt függvény egy 24 bájtos (192 bites) hash létrehozására használja. \cite{bcrypt}
+
+\section{Feltörési módszerek}
+A kriptográfia algoritmusok célja, hogy megvédjék az adatokat az illetéktelen hozzáféréstől. Azonban az informatikai fejlődéssel és az idő múlásával párhuzamosan megjelentek bizonyos feltörési módszerek is, melyeknek célja, hogy az adatokat megpróbálják visszafejteni eredeti, bemeneti formájukra. Az alábbiakban bemutatok néhány gyakran használt kriptográfiai fetörési módszert:
+
+\begin{itemize}
+	\item\textbf{Brute force:} Ez a módszer az összes lehetséges kulcs kipróbálását jelenti, amíg megtaláljuk a helyes kulcsot. Bár hatékony kriptográfiai algoritmusok esetén ez időigényes és gyakran megvalósíthatatlan feladat, bizonyos esetekben hatékony lehet.
+
+	\item\textbf{Frekvenciaanalízis:} Ez a módszer az adott nyelven használt betűk gyakoriságának elemzésén alapul. A gyakrabban előforduló betűk azonosítása segíthet a titkosított szöveg visszafejtésében, különösen, ha az adott nyelvre jellemző mintázatokat lehet azonosítani. Bizonyos algoritmusok esetében ez teljesen kivitelezhetetlen mivel a titkosított szövegben nincsen nyelvi jellegű információ, amely alapján ki lehetne használni a betűk gyakoriságát.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

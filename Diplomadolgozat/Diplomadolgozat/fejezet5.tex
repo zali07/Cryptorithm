@@ -29,7 +29,7 @@ A fő mappa a Cryptorithm amely magába foglalja az előbb említett részeket, 
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[scale=0.8]{images/fájlStruktúra}
+	\includegraphics[scale=0.9]{images/fájlStruktúra}
 	\caption{Rendszer fájl struktúrája}
 \end{figure}
 
@@ -73,6 +73,7 @@ class Data(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 \end{lstlisting}
 
+\pagebreak
  	 \item\textbf{FlaskLogin:}
 A FlaskLogin egy hasznos kiegészítő a Flask keretrendszerhez, amely segít az autentikáció és az azonosítás kezelésében a webes alkalmazásban. Ennek segítségével egyszerűen implementálhattam a felhasználói regisztrációt, bejelentkezést és kijelentkezést a rendszerben. Ez a könyvtár felelős a felhasználói munkamenetek és a hozzáférési jogosultságok kezeléséért.
 

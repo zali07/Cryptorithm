@@ -2,13 +2,13 @@
 
 ```
 Cryptorithm
-├─ main.py
+├─ app.py
 ├─ instance
 │  └─ database.db
 └─ website
    ├─ cryptorithms
-   │  ├─ blockCipherMode.py
-   │  ├─ dataTransformation.py
+   │  ├─ streamCipher.py
+   │  ├─ blockCipher.py
    │  └─ hashing.py
    ├─ language
    │  ├─ en.json
@@ -26,6 +26,10 @@ Cryptorithm
    │  ├─ learning.html
    │  └─ learnItems
    │     ├─ aes.html
+   │     ├─ caesar.html
+   │     ├─ blowfish.html
+   │     ├─ whirlpool.html
+   │     ├─ bcrypt.html
    │     ├─ affin.html
    │     ├─ caesar.html
    │     ├─ sha1.html
