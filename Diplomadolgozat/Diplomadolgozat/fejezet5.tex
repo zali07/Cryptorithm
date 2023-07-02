@@ -2,9 +2,9 @@
 \chapter{Tervezés és megvalósítás}
 %----------------------------------------------------------------------------
 
-A projektet Visual Studio Code segítségével fejlesztettem, amely egy ingyenes és nyílt forráskódú fejlesztői környezet. Bár alapvetően könnyűsúlyú, ennek ellenére erőteljes szövegszerkesztő, mivel számos programozási nyelvet és technológiát kínál. A telepítése után nagyban testreszabhatjuk saját igényeink szerint és számos egyébb funkciókhoz juthatunk a bővítmények telepítésével.
+A projektet Visual Studio Code segítségével fejlesztettem, amely egy ingyenes és nyílt forráskódú fejlesztői környezet. Bár alapvetően könnyűsúlyú, ennek ellenére erőteljes szövegszerkesztő, mivel számos programozási nyelvet és technológiát támogat. A telepítése után nagyban testreszabhatjuk saját igényeink szerint és számos egyéb funkciókhoz juthatunk a bővítmények telepítésével.
 
-6 részre bontottam a projektet: instance, cryptorithms, languages, static, templates, cryptorithm 
+6 részre bontottam a projektet: instance, cryptorithms, languages, static, templates, cryptorithm  (\ref{fig:fileStruct})
 
 \begin{itemize}
 	\item\textbf{Instance}:
@@ -17,13 +17,13 @@ A cryptorithms mappában levő fájlokban kerültek kivitelezésre és implement
 A nyelvekért felelős .json kiterjesztésű fájlok itt vannak tárolva, itt van egy meghatározott struktúrában lefordított tartalma az oldalnak.
 
 	\item\textbf{Static}:
-A static alatt a .css és .js fájlok kerültek létrehozásra, melyek a weboldal dizájnért felelősek.
+A static alatt a .css és .js fájlok kerültek létrehozásra, melyek rendre a weboldal dizájnért és a dinamikus felületért felelősek.
 
 	\item\textbf{Templates}:
-A template mappába kerültek az alap .html fájlok amelyek a tartalom megjelenitéséért felelősek.
+A template mappába kerültek az alap .html fájlok, amelyek a tartalom megjelenitéséért felelősek.
 
 	\item\textbf{Cryptorithm}:
-A fő mappa a Cryptorithm amely magába foglalja az előbb említett részeket, valamint az API kéréseket és válaszokat, a szessziókezeléshez, a projekt inicializálásához szükséges fájlokat, továbbá az adatbázis adatmodelljét és a projektet indító main fájlt.
+A fő mappa a Cryptorithm, amely magába foglalja az előbb említett részeket, valamint az API kéréseket és válaszokat, a szessziókezeléshez, a projekt inicializálásához szükséges fájlokat, továbbá az adatbázis adatmodelljét és a projektet indító main fájlt.
 
 \end{itemize}
 
@@ -31,6 +31,7 @@ A fő mappa a Cryptorithm amely magába foglalja az előbb említett részeket, 
 	\centering
 	\includegraphics[scale=0.9]{images/fájlStruktúra}
 	\caption{Rendszer fájl struktúrája}
+	\label{fig:fileStruct}
 \end{figure}
 
 \section {Könyvtárak}
@@ -41,7 +42,7 @@ A következőekben bemutatom a jelentősebb Python könyvtárakat, melyek segít
 Kriptográfiai funkciókat és algoritmusokat kínál. Ez a könyvtár ideális választás a projektben, mivel számos kriptográfiai műveletet valósíthatunk meg vele. A Cryptography megbízható és jól dokumentált eszköz a kriptográfiai műveletek biztonságos végrehajtásához. Ennek a könyvtárnak a segítségével lett kivitelezve az AES rendszer.
 
  	 \item\textbf{Flask:}
-A projektben a Flask keretrendszert használom a webes alkalmazás felépítéséhez és a kérések kezeléséhez. A Flask könnyen tanulható és rendkívül rugalmas, ami lehetővé tette, hogy könnyedén kialakítsam a vágyott funkciókat és testreszabhasam az alkalmazást.
+A projektben a Flask keretrendszert használom a webes alkalmazás felépítéséhez és a kérések kezeléséhez. A Flask könnyen tanulható és rendkívül rugalmas, ami lehetővé tette, hogy könnyedén kialakítsam a vágyott funkciókat és testreszabhassam az alkalmazást.
 
 A következő kódrészlet a tanulói oldal betöltésének kérését mutatja be:
 \begin{lstlisting}[caption={Learning oldal renderelése}, captionpos=b, language = Python]
@@ -127,6 +128,7 @@ Mindezekután szeretném megemlíteni azokat a könyvtárakat amelyek csak néh�
 A Jinja2 egy erőteljes és rugalmas sablonmotor Python nyelvhez. Arra tervezték, hogy segítsen a dinamikus tartalmú weboldalak generálásában a sablonok és adatok kombinálásával. A Jinja2 a Flask keretrendszer alapértelmezett sablonmotorja, de függetlenül is használható más projektekben. Egyszerű és kifejező szintaxissal rendelkezik, amely hasonlít a HTML-hez, viszont tartalmaz kiegészítő jelöléseket és vezérlőstruktúrákat.
 
 Fő alapvető jellemzője és funkciója amit használtam a következő:
+
  	 \textbf{Sablonok:}
 Lehetővé teszi a HTML-szerű sablonok létrehozását, amelyekben helytartókat (placeholder) és vezérlőstruktúrákat használhatunk. A helytartók fogadják a dinamikus adatokat, amelyeket a sablonmotor behelyettesít az adott oldalra. Ezzel a funkcióval valósítottam meg, hogy a weboldal tartalma igény szerint idegen nyelvűek számára is használható legyen.
 Az alábbi kód szemlélteti ennek használatát, ahol a dupla-kapcsos zárójelek közötti változók a Jinja2 elemei amelyeket a nekik megfelelő json fájlok tartalmával tölt fel:

@@ -9,12 +9,12 @@ A Cryptorithm rendszer használata során néhány alapvető kriptográfiai foga
 A titkosítás olyan folyamat, amely során az eredeti üzenetet (nyílt szöveget) átalakítjuk egy titkosított formává, hogy csak a jogosultak tudják elolvasni. Az alkalmazásban található kriptográfiai rendszerek segítségével a felhasználók titkosíthatnak és visszafejthetnek üzeneteket.
 
 \subsection{Kulcs}
-A kulcs a kriptográfiában egy olyan titkosítási vagy visszafejtési folyamat során használt információdarab, amely alapvetően befolyásolja a kriptográfiai algoritmus működését és a végeredményt. Biztosítják az adatok biztonságát és védelmet nyújtanak a jogosulatlan hozzáférésekkel szemben. Ugyanakkor fontos megjegyezni, hogy az erős és biztonságos kulcs kiválasztása és ennek tárolása, kezelés elengedhetetlen a megfelelő kriptográfiai rendszerek kialakításában.
+A kulcs a kriptográfiában egy olyan titkosítási vagy visszafejtési folyamat során használt információdarab, amely alapvetően befolyásolja a kriptográfiai algoritmus működését és a végeredményt. Biztosítják az adatok biztonságát és védelmet nyújtanak a jogosulatlan hozzáférésekkel szemben. Ugyanakkor fontos megjegyezni, hogy az erős és biztonságos kulcs kiválasztása és ennek tárolása, kezelése elengedhetetlen a megfelelő kriptográfiai rendszerek kialakításában.
 
 \newpage
 \subsection{Titkosítási módok}
 A titkosítási módok meghatározzák, hogy a titkosítás hogyan történik az üzenetek blokkjainak kezelése során. A gyakran használt titkosításí módok a következőek: ECB(Electronic Codebook), CBC(Ciper Block Chaining), CFB(Cipher Feedback), OFB(Output Feedback) és a CTR(Counter).
-A felsorolt üzemmódok mellett számos más speciális üzemmód létezik, amelyek különböző funkciókkat és jellemzőket kínálnak. A megfelelő kiválasztása és alkalmazása az adott kriptográfiai algoritmustól függ.
+A felsorolt üzemmódok mellett számos más speciális üzemmód létezik, amelyek különböző funkciókat és jellemzőket kínálnak. A megfelelő kiválasztása és alkalmazása az adott kriptográfiai algoritmustól függ.
 
 A Cryptorithm esetében az AES blokk titkosító CTR üzemmódban próbálható ki, ami azt jelenti, hogy a blokkok titkosítása egy folyamatosan növekvő számláló alapján történik. A számláló értékét XOR-olják az adatblokkal a blokk titkosítása előtt. Ez a módszer párhuzamosításra alkalmas, mivel a blokkok függetlenül titkosíthatóak.
 
@@ -23,11 +23,11 @@ A dolgozatomban 2 fajta rejtjelezést, avagy tikosítást különböztetek meg, 
 
 A \textbf{blokktitkosítók} a bemeneti adatot blokkokra osztják, majd ezeket a blokkokat titkosítják. A blokkok mérete álltalában azonos, és ugyanazt a titkosítási kulcsot és algoritmust használják. Ilyen titkosító például az AES és a Blowfish. Előnyei a hatékonyság, mivel a blokkok egyszerre titkosíthatóak és dekódolhatóak, továbbá hibajavítási képessége, mert egy hibás blokk nem terjed át a többi blokkra.
 
-A \textbf{folyamtitkosítók} bitenként vagy bitek kis csoportjaival dolgozik, és a titkosítás során egy folyamot generál. A folyamtitkosítás az adatokat a generált kulcs folyammal kombinálja. Előnyei közé tartozik a sebesség és az adatfolyam feldolgozásának hatékonysága, mivel az adatokat bitek szintjén lehet titkosítani és dekódolni. Emellett a folyamtitkosítás ellenállóbb lehet a blokktitkosítással szembeni kriptoanalitikai támadásokkal szemben, mivel nem állít elő azonos bemenetekhez azonos kimeneteket. Ilyen titkosító például a ChaCha20.
+A \textbf{folyamtitkosítók} bitenként vagy bitek kis csoportjaival dolgozik, és a titkosítás során egy kulcsfolyamot generál. A folyamtitkosítás az adatokat a generált kulcsfolyammal kombinálja. Előnyei közé tartozik a sebesség és az adatfolyam feldolgozásának hatékonysága, mivel az adatokat bitek szintjén lehet titkosítani és dekódolni. Emellett a folyamtitkosítás ellenállóbb lehet a blokktitkosítással szembeni kriptoanalitikai támadásokkal szemben, mivel nem állít elő azonos bemenetekhez azonos kimeneteket. Ilyen titkosító például a ChaCha20.
 
 \pagebreak
 \subsection{Hash függvények}
-Az alkalmazás a rejtjelezők mellett még lehetőséget ad a hash függvények tanulmányozására is. A hash-függvények olyan matematikai algoritmusok, amelyek egy tetszőleges hosszúságú bemenetet (pl. üzenetet) átalakítanak egy fix hosszúságú, látszólag véletlenszerű kimenetbe. A hashelés segít a felhasználóknak az adatok hitelességének ellenőrzésében. Továbbá erejük és megbízhatóságuk abban rejlik, hogy irreverzibilisek, nem lehet visszaállítani a hash értékéből a bemeneti adatot eredeti formájában és ugyanakkor ütközmentesek, vagyis nagyon alacsony valószínűséggel található két különböző bemenet, amelyek ugyanahhoz a hash értékhez vezetnek. Ilyen függvény például az SHA, a Whirlpool és a bcrypt.
+Az alkalmazás a rejtjelezők mellett még lehetőséget ad a hash függvények tanulmányozására is. A hash-függvények olyan matematikai algoritmusok, amelyek egy tetszőleges hosszúságú bemenetet (pl. üzenetet) átalakítanak egy fix hosszúságú, látszólag véletlenszerű kimenetbe. A hashelés segít a felhasználóknak az adatok hitelességének ellenőrzésében. Továbbá erejük és megbízhatóságuk abban rejlik, hogy irreverzibilisek, nem lehet visszaállítani a hash értékéből a bemeneti adatot eredeti formájában és ugyanakkor ütközésmentesek, vagyis nagyon alacsony valószínűséggel található két különböző bemenet, amelyek ugyanahhoz a hash értékhez vezetnek. Ilyen függvény például az SHA, a Whirlpool és a bcrypt.
 
 
 \section{Kriptográfia rendszerek}
@@ -55,19 +55,19 @@ A \textbf{Blowfish} egy szimmetrikus kulcsú blokktitkosító, amely 64 bites bl
 
 
 \subsection {Hash függvények bemutatása}
-A \textbf{Whirlpool} egy hash-függvény, amelyet általában adatintegritás-ellenőrzésre és digitális aláírásra használnak. Fix méretű, jellemzően 512 bit hosszú hash-értéket állít elő. A Whirlpoolt különböző biztonsági alkalmazásokban használják, például a fájlok integritásának ellenőrzésére, jelszavak tárolására és üzenethitelesítésre. \cite{Whirlpool}
+A \textbf{Whirlpool} egy hash függvény, amelyet általában adatintegritás-ellenőrzésre és digitális aláírásra használnak. Fix méretű, jellemzően 512 bit hosszú hash-értéket állít elő. A Whirlpoolt különböző biztonsági alkalmazásokban használják, például a fájlok integritásának ellenőrzésére, jelszavak tárolására és üzenethitelesítésre. \cite{Whirlpool}
 
 Az \textbf{SHA} egy hash függvény család, amelyeket a digitális adatok integritásának ellenőrzésére és az adatok egyedi azonosítására használnak. Az SHA hash függvények, például az SHA-1, SHA-256 stb., egy adott bemeneti üzenetet átalakítanak egy fix hosszú hash kóddá. Az SHA algoritmusok irreverzibilisek, vagyis a hash értékből nem lehet visszaállítani az eredeti üzenetet. Ez a tulajdonságuk hasznos a jelszavak, digitális aláírások és az üzenetek integritásának védelmében.
 
 A \textbf{bcrypt} egy hash függvény, amelyet leginkább jelszavak biztonságos tárolására és ellenőrzésére használnak. Az algoritmus tervezésekor arra törekedtek, hogy lassú legyen a hash függvények hasítási sebessége, hogy megnehezítse a jelszavak visszafejtését a hash értékből. Az algoritmus egy sor iterációt végez a jelszó hasításához, és egy só (salt) értéket használ, amely tovább növeli a biztonságot. A jelszó karakterlánc, egy számokban kifejezett költség és egy sóérték a bcrypt algoritmus bemenete. Ezeket a bemeneteket a bcrypt függvény egy 24 bájtos (192 bites) hash létrehozására használja. \cite{bcrypt}
 
 \section{Feltörési módszerek}
-A kriptográfia algoritmusok célja, hogy megvédjék az adatokat az illetéktelen hozzáféréstől. Azonban az informatikai fejlődéssel és az idő múlásával párhuzamosan megjelentek bizonyos feltörési módszerek is, melyeknek célja, hogy az adatokat megpróbálják visszafejteni eredeti, bemeneti formájukra. Az alábbiakban bemutatok néhány gyakran használt kriptográfiai fetörési módszert:
+A kriptográfia algoritmusok célja, hogy megvédjék az adatokat az illetéktelen hozzáféréstől. Azonban az informatikai fejlődéssel és az idő múlásával párhuzamosan megjelentek bizonyos feltörési módszerek is, melyeknek célja, hogy az adatokat megpróbálják visszafejteni eredeti, bemeneti formájukra. Az alábbiakban bemutatok néhány gyakran használt kriptográfiai feltörési módszert:
 
 \begin{itemize}
 	\item\textbf{Brute force:} Ez a módszer az összes lehetséges kulcs kipróbálását jelenti, amíg megtaláljuk a helyes kulcsot. Bár hatékony kriptográfiai algoritmusok esetén ez időigényes és gyakran megvalósíthatatlan feladat, bizonyos esetekben hatékony lehet.
 
-	\item\textbf{Frekvenciaanalízis:} Ez a módszer az adott nyelven használt betűk gyakoriságának elemzésén alapul. A gyakrabban előforduló betűk azonosítása segíthet a titkosított szöveg visszafejtésében, különösen, ha az adott nyelvre jellemző mintázatokat lehet azonosítani. Bizonyos algoritmusok esetében ez teljesen kivitelezhetetlen mivel a titkosított szövegben nincsen nyelvi jellegű információ, amely alapján ki lehetne használni a betűk gyakoriságát.
+	\item\textbf{Frekvenciaanalízis:} Ez a módszer az adott nyelven használt betűk gyakoriságának elemzésén alapul. A gyakrabban előforduló betűk azonosítása segíthet a titkosított szöveg visszafejtésében, különösen, ha az adott nyelvre jellemző mintázatokat lehet azonosítani. Bizonyos algoritmusok esetében ez teljesen kivitelezhetetlen, mivel a titkosított szövegben nincsen nyelvi jellegű információ, amely alapján ki lehetne használni a betűk gyakoriságát.
 \end{itemize}
 
 
